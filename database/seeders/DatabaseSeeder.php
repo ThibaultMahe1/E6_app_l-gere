@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Silber\Bouncer\BouncerFacade as Bouncer;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,11 +16,32 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // Admin User
+        $admin = User::factory()->create([
+            'name' => 'Admin',
+            'email' => 'admin@example.com',
+            'role' => 'admin',
+            'password' => bcrypt('password'),
         ]);
+        
+        Bouncer::assign('admin')->to($admin);
+
+        // Regular User
+        User::factory()->create([
+            'name' => 'User',
+            'email' => 'user@example.com',
+            'password' => bcrypt('password'),
+        ]);
+
+        // Call other seeders
+        $this->call([
+            EventTypeSeeder::class,
+            EventSeeder::class,
+            HorseSeeder::class,
+        ]);
+
+        // Assign 3 events to Admin
+        $events = \App\Models\Event::inRandomOrder()->take(3)->get();
+        $admin->events()->attach($events);
     }
 }

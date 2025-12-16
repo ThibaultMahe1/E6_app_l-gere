@@ -33,6 +33,17 @@ Inscription
             @enderror
         </div>
 
+        <!-- Phone Number -->
+        <div class="mb-3 text-start">
+            <label for="phone_number" class="form-label">{{ __('Numéro de téléphone') }}</label>
+            <input id="phone_number" type="text" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number') }}" required autocomplete="tel">
+            @error('phone_number')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
+        </div>
+
         <!-- Password -->
         <div class="mb-3 text-start">
             <label for="password" class="form-label">{{ __('Mot de passe') }}</label>
