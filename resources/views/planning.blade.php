@@ -165,13 +165,20 @@ Planning
                                 isSubscribedGlobally: isSubscribedGlobally
                             });
 
+                            // Check for 48h restriction
+                            var now = new Date();
+                            var eventDateObj = info.event.start;
+                            var diffMs = eventDateObj - now;
+                            var diffHours = diffMs / (1000 * 60 * 60);
+                            var isLocked = diffHours < 48;
+
                             if (formuleType === 'annee') {
                                 // Show dual buttons
                                 if (btnUnique) btnUnique.style.display = 'inline-block';
                                 if (btnYear) btnYear.style.display = 'inline-block';
                                 if (btnDefault) btnDefault.style.display = 'none';
 
-                                // Update Year Button
+                                // Update Year Button (Not affected by 48h rule)
                                 if (isSubscribedGlobally) {
                                     btnYear.disabled = true;
                                     btnYear.textContent = "Inscrit à l'année";
@@ -184,10 +191,15 @@ Planning
                                     btnYear.classList.add('btn-primary-custom');
                                 }
 
-                                // Update Unique Button
+                                // Update Unique Button (Affected by 48h rule)
                                 if (isSubscribedSpecific || isSubscribedGlobally) {
                                     btnUnique.disabled = true;
                                     btnUnique.textContent = isSubscribedGlobally ? "Inclus (Année)" : "Déjà inscrit";
+                                    btnUnique.classList.add('btn-secondary');
+                                    btnUnique.classList.remove('btn-primary-custom');
+                                } else if (isLocked) {
+                                    btnUnique.disabled = true;
+                                    btnUnique.textContent = "Fermé (< 48h)";
                                     btnUnique.classList.add('btn-secondary');
                                     btnUnique.classList.remove('btn-primary-custom');
                                 } else {
@@ -206,6 +218,12 @@ Planning
                                 if (isSubscribedSpecific) {
                                     btnDefault.disabled = true;
                                     btnDefault.textContent = "Déjà inscrit";
+                                    btnDefault.style.backgroundColor = '#6c757d';
+                                    btnDefault.style.borderColor = '#6c757d';
+                                    btnDefault.style.cursor = 'not-allowed';
+                                } else if (isLocked) {
+                                    btnDefault.disabled = true;
+                                    btnDefault.textContent = "Inscriptions closes (< 48h)";
                                     btnDefault.style.backgroundColor = '#6c757d';
                                     btnDefault.style.borderColor = '#6c757d';
                                     btnDefault.style.cursor = 'not-allowed';

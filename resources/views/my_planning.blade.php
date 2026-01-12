@@ -122,15 +122,55 @@ Mon Planning
                 var btnDefault = document.getElementById('btnUnsubscribeDefault');
                 
                 var isYearly = info.event.extendedProps.isYearly;
+                
+                // Check for 48h restriction
+                var now = new Date();
+                var eventDateObj = info.event.start;
+                var diffMs = eventDateObj - now;
+                var diffHours = diffMs / (1000 * 60 * 60);
+                var isLocked = diffHours < 48; // Less than 48h or already started (negative diff)
 
                 if (isYearly) {
                     if (btnUnique) btnUnique.style.display = 'inline-block';
                     if (btnYear) btnYear.style.display = 'inline-block';
                     if (btnDefault) btnDefault.style.display = 'none';
+
+                    // Update Year Button (Not affected by 48h rule for cancelling the WHOLE year, presumably? Or keep consistent)
+                    // Usually cancelling year sub is administrative, but let's assume it's allowed regardless of next session.
+                    btnYear.disabled = false;
+                    btnYear.textContent = "Se désinscrire de l'année";
+                    btnYear.classList.remove('btn-secondary');
+                    btnYear.classList.add('btn-primary-custom');
+
+                    // Update Unique Button
+                    if (isLocked) {
+                        btnUnique.disabled = true;
+                        btnUnique.textContent = "Trop tard (< 48h)";
+                        btnUnique.style.backgroundColor = '#6c757d'; // Grey
+                        btnUnique.style.borderColor = '#6c757d';
+                    } else {
+                        btnUnique.disabled = false;
+                        btnUnique.textContent = "Se désinscrire de cette séance";
+                        btnUnique.style.backgroundColor = '#dc3545'; // Red
+                        btnUnique.style.borderColor = '#dc3545';
+                    }
+
                 } else {
                     if (btnUnique) btnUnique.style.display = 'none';
                     if (btnYear) btnYear.style.display = 'none';
                     if (btnDefault) btnDefault.style.display = 'block';
+
+                    if (isLocked) {
+                        btnDefault.disabled = true;
+                        btnDefault.textContent = "Trop tard (< 48h)";
+                        btnDefault.style.backgroundColor = '#6c757d';
+                        btnDefault.style.borderColor = '#6c757d';
+                    } else {
+                        btnDefault.disabled = false;
+                        btnDefault.textContent = "Se désinscrire";
+                        btnDefault.style.backgroundColor = '#dc3545';
+                        btnDefault.style.borderColor = '#dc3545';
+                    }
                 }
 
                 // Show Offcanvas

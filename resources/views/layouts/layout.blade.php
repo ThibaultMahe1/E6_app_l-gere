@@ -61,9 +61,9 @@
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li><a class="dropdown-item" href="{{ route('pensions') }}">Pensions</a></li>
                                 <li><a class="dropdown-item" href="{{ route('tarifs') }}">Tarifs</a></li>
-                                <li><a class="dropdown-item" href="#">Plan d’accès</a></li>
-                                <li><a class="dropdown-item" href="#">Revue de presse</a></li>
-                                <li><a class="dropdown-item" href="#">Galeries</a></li>
+                                <li><a class="dropdown-item" href="{{ route('plan-dacces') }}">Plan d’accès</a></li>
+                                <li><a class="dropdown-item" href="{{ route('revue-de-presse') }}">Revue de presse</a></li>
+                                <li><a class="dropdown-item" href="{{ route('galeries.index') }}">Galeries</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="#">Nous Contacter</a></li>
                             </ul>

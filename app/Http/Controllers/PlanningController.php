@@ -64,7 +64,34 @@ class PlanningController extends Controller
             return back()->with('error', 'Compte adhérent introuvable.');
         }
 
-        $isCours = $event->eventTypes->contains('name', 'cours');
+        $isCours = $event->eventTypes->contains(function ($type) {
+            return strtolower($type->name) === 'cours';
+        });
+
+        // Check for 48h notice for registration
+        if ($subscriptionType !== 'year') {
+            $eventDate = null;
+            if ($isCours) {
+                if ($date) {
+                    $eventDate = \Carbon\Carbon::parse($date . ' ' . $event->start_date->format('H:i:s'));
+                }
+            } else {
+                $eventDate = $event->start_date;
+            }
+
+            // If we have a date (either from recurrence or single event), check the delay
+            if ($eventDate) {
+                // Strict comparison: If now is past the limit (Event - 48h), block.
+                // This covers:
+                // 1. Past events (Now > Event > Event-48h)
+                // 2. Events starting very soon (Now > Event-48h)
+                $limitDate = $eventDate->copy()->subHours(48);
+                
+                if (now()->greaterThanOrEqualTo($limitDate)) {
+                    return back()->with('error', 'Vous ne pouvez pas vous inscrire moins de 48h avant le début du cours.');
+                }
+            }
+        }
 
         if ($adherent->formule === 'annee') {
             if ($subscriptionType === 'year') {
@@ -197,6 +224,29 @@ class PlanningController extends Controller
         $adherent = $user->adherent;
         $date = $request->input('date'); // The specific date to unsubscribe from
         $subscriptionType = $request->input('subscription_type', 'unique'); // 'unique' or 'year'
+
+        // Check for 48h notice for unsubscription
+        if ($subscriptionType !== 'year') {
+            $isCours = $event->eventTypes->contains(function ($type) {
+                return strtolower($type->name) === 'cours';
+            });
+            
+            $eventDate = null;
+            if ($isCours) {
+                if ($date) {
+                    $eventDate = \Carbon\Carbon::parse($date . ' ' . $event->start_date->format('H:i:s'));
+                }
+            } else {
+                $eventDate = $event->start_date;
+            }
+
+            if ($eventDate) {
+                $limitDate = $eventDate->copy()->subHours(48);
+                if (now()->greaterThanOrEqualTo($limitDate)) {
+                    return back()->with('error', 'Vous ne pouvez pas vous désinscrire moins de 48h avant le début du cours.');
+                }
+            }
+        }
 
         // Check for specific date subscription first (Carte or specific Annee session)
         $specificSub = $event->users()

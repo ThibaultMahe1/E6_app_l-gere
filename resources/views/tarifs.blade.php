@@ -30,10 +30,10 @@
                         <li class="mb-2"><i class="fas fa-check text-primary-custom me-2"></i>Les responsables légaux des cavaliers mineurs doivent impérativement remplir le formulaire d'inscription avec autorisation de soins en cas d'accident.</li>
                     </ul>
                     <div class="d-grid gap-2 mt-4">
-                        <a href="#" class="btn btn-outline-secondary">
+                        <a href="{{ asset('storage/fiche de renseignement adulte.pdf') }}" target="_blank" class="btn btn-outline-secondary">
                             <i class="fas fa-file-pdf me-2"></i>Formulaire Inscription Adulte (PDF)
                         </a>
-                        <a href="#" class="btn btn-outline-secondary">
+                        <a href="{{ asset('storage/fiche_renseignement_enf.pdf') }}" target="_blank" class="btn btn-outline-secondary">
                             <i class="fas fa-file-pdf me-2"></i>Formulaire Inscription Enfant (PDF)
                         </a>
                     </div>
@@ -215,7 +215,7 @@
                 </div>
                 
                 <div class="text-center mt-4">
-                    <a href="#" class="btn text-white rounded-pill px-4" style="background-color: var(--primary-color);">
+                    <a href="{{ asset('storage/tarifs_2025_2026.pdf') }}" target="_blank" class="btn text-white rounded-pill px-4" style="background-color: var(--primary-color);">
                         <i class="fas fa-download me-2"></i>Télécharger les Tarifs Chevaux (PDF)
                     </a>
                 </div>
@@ -321,7 +321,7 @@
                 </div>
 
                 <div class="text-center mt-4">
-                    <a href="#" class="btn text-white rounded-pill px-4" style="background-color: var(--primary-color);">
+                    <a href="{{ asset('storage/tarifs_2025_2026poney.pdf') }}" target="_blank" class="btn text-white rounded-pill px-4" style="background-color: var(--primary-color);">
                         <i class="fas fa-download me-2"></i>Télécharger les Tarifs Poneys (PDF)
                     </a>
                 </div>
