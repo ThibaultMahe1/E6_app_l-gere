@@ -218,7 +218,8 @@ h1, h2, h3, h4, h5, h6, .navbar-brand, .nav-link {
    General Content
    ============================================ */
 .content-wrapper {
-    padding: 2rem 0;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 .btn-primary {
@@ -274,4 +275,152 @@ h1, h2, h3, h4, h5, h6, .navbar-brand, .nav-link {
 
 .border-primary-custom {
     border-color: var(--primary-color) !important;
+}
+
+/* ============================================
+   Mobile Navigation Ergonomics (Offcanvas)
+   ============================================ */
+@media (max-width: 991.98px) {
+    
+    /* Adjust sidebar width to fit content */
+    .offcanvas {
+        width: auto !important;
+        min-width: 240px;
+        max-width: 85vw;
+    }
+
+    /* Right Align Everything in Offcanvas */
+    .offcanvas-body {
+        padding-top: 2rem;
+        overflow: visible !important; /* Allow dropdowns to "spill out" to the left */
+        padding-left: 1rem;
+        padding-right: 1.5rem;
+    }
+    
+    .navbar-nav {
+        flex-direction: column;
+        align-items: flex-end !important; /* Force right alignment */
+        width: 100%;
+        gap: 1.5rem !important; /* Spacing between main items */
+    }
+
+    .navbar-nav .nav-item {
+        position: relative;
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end; /* Align content to right */
+    }
+
+    .nav-link {
+        padding: 0.5rem 0;
+        font-size: 1.2rem; /* Bigger main items */
+        text-align: right;
+        display: inline-block;
+        width: auto;
+        white-space: nowrap;
+    }
+
+    /* Left Floating Dropdowns */
+    .navbar-nav .dropdown-menu {
+        position: absolute !important;
+        right: 100%; /* Position to the left of the item */
+        top: 0;
+        left: auto; /* Reset left */
+        margin-right: 20px; /* Spacing from the menu text */
+        
+        width: 250px; /* Uniform width for all dropdowns */
+        padding: 0.5rem;
+        
+        background-color: #fff;
+        border: 1px solid rgba(0,0,0,0.05);
+        border-radius: 12px;
+        box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+        
+        /* We rely on Bootstrap's display toggling for visibility management.
+           This ensures that when the 'show' class is removed, display becomes 'none' instantly,
+           preventing any 'ghost' text or lingering artifacts. */
+    }
+
+    /* Animation Keyframes for smooth entrance */
+    @keyframes dropdownSlideIn {
+        from {
+            opacity: 0;
+            transform: translateX(15px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    /* Visible state with animation */
+    .navbar-nav .dropdown-menu.show {
+        /* Bootstrap sets display: block here automatically */
+        animation: dropdownSlideIn 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+
+    .navbar-nav .dropdown-item {
+        padding: 10px 15px;
+        font-size: 1rem;
+        white-space: normal;
+        border-radius: 8px;
+        margin-bottom: 2px;
+        text-align: left; /* Keep dropdown text left-aligned for readability */
+    }
+
+    .navbar-nav .dropdown-item:active, 
+    .navbar-nav .dropdown-item:hover {
+        background-color: var(--bg-color);
+        color: var(--primary-color);
+    }
+    
+    /* Arrow adjustment */
+    .nav-link.dropdown-toggle::after {
+        display: inline-block;
+        margin-left: 0.8em;
+    }
+    
+    /* Ensure the User Icon aligns right */
+    .user-icon-wrapper {
+        margin-left: auto;
+    }
+}
+
+    .navbar-nav .dropdown-item {
+        padding: 10px 15px;
+        font-size: 1.1rem; /* Bigger text */
+        border-radius: 8px;
+        margin-bottom: 5px;
+    }
+
+    .navbar-nav .dropdown-item:active, 
+    .navbar-nav .dropdown-item:hover {
+        background-color: var(--bg-color);
+        color: var(--primary-color);
+    }
+    
+    /* Arrow adjustment */
+    .nav-link.dropdown-toggle::after {
+        display: inline-block;
+        margin-left: 0.5em; /* Keep it on the right */
+    }
+    
+    /* Ensure the User Icon aligns right */
+    .user-icon-wrapper {
+        margin-left: auto;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .sticky-tabs-container {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 80px; /* Adjust based on navbar height */
+        z-index: 1000;
+        background-color: var(--bg-color);
+        padding: 1rem 0;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        margin: 0 -1.5rem; /* Counteract container padding */
+    }
 }

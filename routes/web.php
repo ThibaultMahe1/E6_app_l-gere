@@ -7,9 +7,14 @@ use App\Http\Controllers\PressReviewController;
 use App\Http\Controllers\GalleryController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\TarifController;
+
+use App\Http\Controllers\StageController;
+
 Route::get('/', function () {
     return view('acceuil');
 })->name('acceuil');
+
 
 Route::get('/equitation-harmonique', function () {
     return view('equitation_harmonique');
@@ -31,9 +36,7 @@ Route::get('/pensions', function () {
     return view('pension');
 })->name('pensions');
 
-Route::get('/tarifs', function () {
-    return view('tarifs');
-})->name('tarifs');
+Route::get('/tarifs', [TarifController::class, 'index'])->name('tarifs');
 
 Route::get('/cavalerie', function () {
     $chevaux = \App\Models\Horse::where('type', 'cheval')->get();
@@ -48,6 +51,14 @@ Route::get('/planning', [PlanningController::class, 'index'])->name('planning');
 Route::get('/plan-dacces', function () {
     return view('plan_acces');
 })->name('plan-dacces');
+
+Route::get('/stages', [StageController::class, 'index'])->name('stages.index');
+Route::get('/stages/{stage}', [StageController::class, 'show'])->name('stages.show');
+
+Route::get('/nous-contacter', function () {
+    return view('contact');
+})->name('nous-contacter');
+
 
 Route::get('/revue-de-presse', [PressReviewController::class, 'index'])->name('revue-de-presse');
 

@@ -103,7 +103,7 @@
 
             <!-- Gallery Link -->
             <div class="text-center">
-                <a href="#" class="btn btn-lg text-white px-5 py-3" style="background-color: var(--primary-color); font-family: 'Cinzel', serif;">
+                <a href="{{ route('galeries.index') }}" class="btn btn-lg text-white px-5 py-3" style="background-color: var(--primary-color); font-family: 'Cinzel', serif;">
                     <i class="fas fa-images me-2"></i> Un séjour au Centre Equestre ? Visitez la galerie
                 </a>
             </div>

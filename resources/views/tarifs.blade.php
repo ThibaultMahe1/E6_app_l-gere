@@ -110,32 +110,36 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1er trimestre</td>
-                                    <td>8 sept. - 20 déc. (13 séances)</td>
-                                    <td class="fw-bold">245 €</td>
-                                </tr>
-                                <tr>
-                                    <td>2e trimestre</td>
-                                    <td>5 janv. - 28 mars (11 séances)</td>
-                                    <td class="fw-bold">210 €</td>
-                                </tr>
-                                <tr>
-                                    <td>3e trimestre</td>
-                                    <td>7 avril - 4 juillet (11 séances)</td>
-                                    <td class="fw-bold">210 €</td>
-                                </tr>
-                                <tr style="background-color: rgba(191, 155, 110, 0.1);">
-                                    <td class="fw-bold text-primary-custom">Forfait Annuel</td>
-                                    <td>35 séances</td>
-                                    <td class="fw-bold text-primary-custom">645 € <small class="text-muted fw-normal">(au lieu de 660 €)</small></td>
-                                </tr>
+                                @foreach($groupedTarifs['cheval']['enseignement'] as $tarif)
+                                    @if(str_contains(strtolower($tarif->title), 'annuel'))
+                                        <tr style="background-color: rgba(191, 155, 110, 0.1);">
+                                            <td class="fw-bold text-primary-custom">{{ $tarif->title }}</td>
+                                            <td>{{ $tarif->description }}</td>
+                                            <td class="fw-bold text-primary-custom">
+                                                {{ rtrim(rtrim(number_format($tarif->price, 2, ',', ' '), '0'), ',') }} € 
+                                                @if($tarif->promo_text)
+                                                    <small class="text-muted fw-normal">{{ $tarif->promo_text }}</small>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @else
+                                        <tr>
+                                            <td>{{ $tarif->title }}</td>
+                                            <td>{{ $tarif->description }}</td>
+                                            <td class="fw-bold">{{ rtrim(rtrim(number_format($tarif->price, 2, ',', ' '), '0'), ',') }} €</td>
+                                        </tr>
+                                    @endif
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
-                    <div class="card-footer bg-light text-center">
-                        <small class="text-muted">Option Sérénité (3 rattrapages/an) : <strong>+30 €</strong></small>
-                    </div>
+                    @if($groupedTarifs['cheval']['option']->isNotEmpty())
+                        <div class="card-footer bg-light text-center">
+                            @foreach($groupedTarifs['cheval']['option'] as $option)
+                                <small class="text-muted">{{ $option->title }} ({{ $option->description }}) : <strong>+{{ rtrim(rtrim(number_format($option->price, 2, ',', ' '), '0'), ',') }} €</strong></small>
+                            @endforeach
+                        </div>
+                    @endif
                 </div>
 
                 <div class="row g-4">
@@ -145,20 +149,17 @@
                             <div class="card-body">
                                 <h4 class="h5 text-primary-custom mb-3" style="font-family: 'Cinzel', serif;">Cartes & Découverte</h4>
                                 <ul class="list-group list-group-flush">
+                                    @foreach($groupedTarifs['cheval']['cartes'] as $tarif)
                                     <li class="list-group-item d-flex justify-content-between">
                                         <div>
-                                            <strong>Carte 10 séances</strong><br>
-                                            <small class="text-muted">Valable 4 mois</small>
+                                            <strong>{{ $tarif->title }}</strong><br>
+                                            @if($tarif->description)
+                                                <small class="text-muted">{{ $tarif->description }}</small>
+                                            @endif
                                         </div>
-                                        <span class="fw-bold">220 €</span>
+                                        <span class="fw-bold">{{ rtrim(rtrim(number_format($tarif->price, 2, ',', ' '), '0'), ',') }} €</span>
                                     </li>
-                                    <li class="list-group-item d-flex justify-content-between">
-                                        <div>
-                                            <strong>Carte Découverte</strong><br>
-                                            <small class="text-muted">5 séances (1 seule fois/cavalier)</small>
-                                        </div>
-                                        <span class="fw-bold">95 €</span>
-                                    </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -169,49 +170,44 @@
                             <div class="card-body">
                                 <h4 class="h5 text-primary-custom mb-3" style="font-family: 'Cinzel', serif;">À la carte</h4>
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item d-flex justify-content-between">
-                                        <strong>Heure passager</strong>
-                                        <span class="fw-bold">26 €</span>
-                                    </li>
+                                    @foreach($groupedTarifs['cheval']['a_la_carte'] as $tarif)
                                     <li class="list-group-item d-flex justify-content-between">
                                         <div>
-                                            <strong>Cours particulier</strong><br>
-                                            <small class="text-muted">Max 3 cavaliers</small>
+                                            <strong>{{ $tarif->title }}</strong><br>
+                                            @if($tarif->description)
+                                                <small class="text-muted">{{ $tarif->description }}</small>
+                                            @endif
                                         </div>
-                                        <span class="fw-bold">38 €</span>
+                                        <span class="fw-bold">{{ rtrim(rtrim(number_format($tarif->price, 2, ',', ' '), '0'), ',') }} €</span>
                                     </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <!-- Propriétaires -->
+                    @if($groupedTarifs['cheval']['proprietaire']->isNotEmpty())
                     <div class="col-12">
                         <div class="card border-0 shadow-sm bg-light">
                             <div class="card-body">
                                 <h4 class="h5 text-primary-custom mb-3" style="font-family: 'Cinzel', serif;">Propriétaires</h4>
                                 <div class="row text-center">
+                                    @foreach($groupedTarifs['cheval']['proprietaire'] as $tarif)
                                     <div class="col-md-4 mb-3 mb-md-0">
                                         <div class="p-3 bg-white rounded shadow-sm h-100">
-                                            <div class="fw-bold mb-1">Pension Box</div>
-                                            <div class="text-primary-custom h4 mb-0">365 €<small>/mois</small></div>
+                                            <div class="fw-bold mb-1">{{ $tarif->title }}</div>
+                                            <div class="text-primary-custom h4 mb-0">
+                                                {{ rtrim(rtrim(number_format($tarif->price, 2, ',', ' '), '0'), ',') }} €
+                                                @if($tarif->frequency)<small>{{ $tarif->frequency }}</small>@endif
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 mb-3 mb-md-0">
-                                        <div class="p-3 bg-white rounded shadow-sm h-100">
-                                            <div class="fw-bold mb-1">Adhésion Annuelle</div>
-                                            <div class="text-primary-custom h4 mb-0">85 €</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="p-3 bg-white rounded shadow-sm h-100">
-                                            <div class="fw-bold mb-1">Carte 10 séances (Proprio)</div>
-                                            <div class="text-primary-custom h4 mb-0">60 €</div>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
                     </div>
+                    @endif
                 </div>
                 
                 <div class="text-center mt-4">
@@ -244,32 +240,36 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1er trimestre</td>
-                                    <td>8 sept. - 20 déc. (13 séances)</td>
-                                    <td class="fw-bold">210 €</td>
-                                </tr>
-                                <tr>
-                                    <td>2e trimestre</td>
-                                    <td>5 janv. - 28 mars (11 séances)</td>
-                                    <td class="fw-bold">170 €</td>
-                                </tr>
-                                <tr>
-                                    <td>3e trimestre</td>
-                                    <td>7 avril - 4 juillet (11 séances)</td>
-                                    <td class="fw-bold">170 €</td>
-                                </tr>
-                                <tr style="background-color: rgba(52, 6, 4, 0.05);">
-                                    <td class="fw-bold text-primary-custom">Forfait Annuel</td>
-                                    <td>35 séances</td>
-                                    <td class="fw-bold text-primary-custom">530 € <small class="text-muted fw-normal">(au lieu de 550 €)</small></td>
-                                </tr>
+                                @foreach($groupedTarifs['poney']['enseignement'] as $tarif)
+                                    @if(str_contains(strtolower($tarif->title), 'annuel'))
+                                        <tr style="background-color: rgba(52, 6, 4, 0.05);">
+                                            <td class="fw-bold text-primary-custom">{{ $tarif->title }}</td>
+                                            <td>{{ $tarif->description }}</td>
+                                            <td class="fw-bold text-primary-custom">
+                                                {{ rtrim(rtrim(number_format($tarif->price, 2, ',', ' '), '0'), ',') }} €
+                                                @if($tarif->promo_text)
+                                                    <small class="text-muted fw-normal">{{ $tarif->promo_text }}</small>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @else
+                                        <tr>
+                                            <td>{{ $tarif->title }}</td>
+                                            <td>{{ $tarif->description }}</td>
+                                            <td class="fw-bold">{{ rtrim(rtrim(number_format($tarif->price, 2, ',', ' '), '0'), ',') }} €</td>
+                                        </tr>
+                                    @endif
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
-                    <div class="card-footer bg-light text-center">
-                        <small class="text-muted">Option Sérénité (3 rattrapages/an) : <strong>+30 €</strong></small>
-                    </div>
+                    @if($groupedTarifs['poney']['option']->isNotEmpty())
+                        <div class="card-footer bg-light text-center">
+                            @foreach($groupedTarifs['poney']['option'] as $option)
+                                <small class="text-muted">{{ $option->title }} ({{ $option->description }}) : <strong>+{{ rtrim(rtrim(number_format($option->price, 2, ',', ' '), '0'), ',') }} €</strong></small>
+                            @endforeach
+                        </div>
+                    @endif
                 </div>
 
                 <div class="row g-4">
@@ -279,20 +279,17 @@
                             <div class="card-body">
                                 <h4 class="h5 text-primary-custom mb-3" style="font-family: 'Cinzel', serif;">Cartes & Découverte</h4>
                                 <ul class="list-group list-group-flush">
+                                    @foreach($groupedTarifs['poney']['cartes'] as $tarif)
                                     <li class="list-group-item d-flex justify-content-between">
                                         <div>
-                                            <strong>Carte 10 séances</strong><br>
-                                            <small class="text-muted">Valable 4 mois</small>
+                                            <strong>{{ $tarif->title }}</strong><br>
+                                            @if($tarif->description)
+                                                <small class="text-muted">{{ $tarif->description }}</small>
+                                            @endif
                                         </div>
-                                        <span class="fw-bold">170 €</span>
+                                        <span class="fw-bold">{{ rtrim(rtrim(number_format($tarif->price, 2, ',', ' '), '0'), ',') }} €</span>
                                     </li>
-                                    <li class="list-group-item d-flex justify-content-between">
-                                        <div>
-                                            <strong>Carte Découverte</strong><br>
-                                            <small class="text-muted">5 séances (1 seule fois/cavalier)</small>
-                                        </div>
-                                        <span class="fw-bold">75 €</span>
-                                    </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -303,17 +300,17 @@
                             <div class="card-body">
                                 <h4 class="h5 text-primary-custom mb-3" style="font-family: 'Cinzel', serif;">À la carte</h4>
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item d-flex justify-content-between">
-                                        <strong>Heure passager</strong>
-                                        <span class="fw-bold">19 €</span>
-                                    </li>
+                                    @foreach($groupedTarifs['poney']['a_la_carte'] as $tarif)
                                     <li class="list-group-item d-flex justify-content-between">
                                         <div>
-                                            <strong>Cours particulier</strong><br>
-                                            <small class="text-muted">Max 3 cavaliers</small>
+                                            <strong>{{ $tarif->title }}</strong><br>
+                                            @if($tarif->description)
+                                                <small class="text-muted">{{ $tarif->description }}</small>
+                                            @endif
                                         </div>
-                                        <span class="fw-bold">38 €</span>
+                                        <span class="fw-bold">{{ rtrim(rtrim(number_format($tarif->price, 2, ',', ' '), '0'), ',') }} €</span>
                                     </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>

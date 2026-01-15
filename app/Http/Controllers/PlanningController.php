@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class PlanningController extends Controller
 {
-    public function index()
+    public function index(): View
     {
         $user = auth()->user();
-        $events = Event::with('eventTypes')->get()->map(function ($event) use ($user) {
+        $events = Event::with('eventTypes')->get()->map(function (Event $event) use ($user) {
             $isCours = $event->eventTypes->contains('name', 'cours');
             $typeNames = $event->eventTypes->pluck('name')->join(', ');
 
@@ -21,12 +24,19 @@ class PlanningController extends Controller
             if ($user) {
                 // Ensure pivot fields are loaded and filter by the current user correctly
                 $userSubs = $event->users()->where('users.id', $user->id)->withPivot(['date', 'is_cancelled'])->get();
-                $subscribedGlobally = $userSubs->contains(function ($sub) {
-                    return $sub->pivot->date === null;
+                $subscribedGlobally = $userSubs->contains(function (User $sub) {
+                    /** @var \Illuminate\Database\Eloquent\Relations\Pivot $pivot */
+                    $pivot = $sub->pivot;
+                    return $pivot->getAttribute('date') === null;
                 });
-                $subscribedDates = $userSubs->whereNotNull('pivot.date')->pluck('pivot.date')->toArray();
+                $subscribedDates = $userSubs->map(function (User $sub) {
+                    /** @var \Illuminate\Database\Eloquent\Relations\Pivot $pivot */
+                    $pivot = $sub->pivot;
+                    return $pivot->getAttribute('date');
+                })->filter()->values()->toArray();
             }
 
+            /** @var array<string, mixed> $data */
             $data = [
                 'id' => $event->id,
                 'title' => $event->name,
@@ -53,10 +63,14 @@ class PlanningController extends Controller
         return view('planning', compact('events'));
     }
 
-    public function subscribe(Request $request, Event $event)
+    public function subscribe(Request $request, Event $event): RedirectResponse
     {
+        /** @var \App\Models\User $user */
         $user = auth()->user();
+        
+        /** @var \App\Models\Adherent|null $adherent */
         $adherent = $user->adherent;
+        
         $date = $request->input('date'); // Expected format: Y-m-d
         $subscriptionType = $request->input('subscription_type', 'unique'); // 'unique' or 'year'
 
@@ -148,15 +162,19 @@ class PlanningController extends Controller
         }
     }
 
-    public function myPlanning()
+    public function myPlanning(): View
     {
+        /** @var \App\Models\User $user */
         $user = auth()->user();
         // Eager load eventTypes and pivot data
-        $events = $user->events()->with('eventTypes')->withPivot(['date', 'is_cancelled'])->get()->map(function ($event) {
+        $events = $user->events()->with('eventTypes')->withPivot(['date', 'is_cancelled'])->get()->map(function (Event $event) {
+            /** @var \Illuminate\Database\Eloquent\Relations\Pivot $pivot */
+            $pivot = $event->pivot;
+
             $isCours = $event->eventTypes->contains('name', 'cours');
             $typeNames = $event->eventTypes->pluck('name')->join(', ');
-            $pivotDate = $event->pivot->date;
-            $isCancelled = $event->pivot->is_cancelled;
+            $pivotDate = $pivot->getAttribute('date');
+            $isCancelled = $pivot->getAttribute('is_cancelled');
 
             // If this specific row is a cancellation, we should not render it as an event.
             // However, we are iterating over *subscriptions*.
@@ -168,6 +186,7 @@ class PlanningController extends Controller
                 return null; // Skip cancellation rows
             }
 
+            /** @var array<string, mixed> $data */
             $data = [
                 'id' => $event->id,
                 'title' => $event->name,
@@ -218,10 +237,14 @@ class PlanningController extends Controller
         return view('my_planning', compact('events'));
     }
 
-    public function unsubscribe(Request $request, Event $event)
+    public function unsubscribe(Request $request, Event $event): RedirectResponse
     {
+        /** @var \App\Models\User $user */
         $user = auth()->user();
+        
+        /** @var \App\Models\Adherent|null $adherent */
         $adherent = $user->adherent;
+        
         $date = $request->input('date'); // The specific date to unsubscribe from
         $subscriptionType = $request->input('subscription_type', 'unique'); // 'unique' or 'year'
 

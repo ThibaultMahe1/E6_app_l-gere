@@ -4,7 +4,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', config('app.name'))</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>@yield('title', config('app.name')) | Centre Équestre Pontchâteau</title>
+    <meta name="description" content="@yield('meta_description', 'Bienvenue au Centre Équestre de Pontchâteau (44). Équitation sur 12 hectares, poney-club, compétition, pensions et stages. Découvrez l\'Équitation Harmonique au cœur du Parc de Coët Roz.')">
+    <meta name="keywords" content="centre equestre, pontchateau, equitation, poney club, loire atlantique, pension chevaux, stages, equitation harmonique, 44160">
+    <meta name="author" content="Centre Équestre Pontchâteau">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="@yield('title', config('app.name')) | Centre Équestre Pontchâteau">
+    <meta property="og:description" content="@yield('meta_description', 'Centre équestre à Pontchâteau (44). Cours, stages, pensions et compétitions dans un cadre exceptionnel de 12 hectares.')">
+    <meta property="og:image" content="{{ asset('img/logo.png') }}">
+
+    <!-- Google Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@@context": "https://schema.org",
+      "@@type": "SportsActivityLocation",
+      "name": "Centre Équestre de Pontchâteau",
+      "image": "{{ asset('img/logo.png') }}",
+      "checkinTime": "09:00",
+      "checkoutTime": "19:00",
+      "address": {
+        "@@type": "PostalAddress",
+        "streetAddress": "Le Ht Coët Roz",
+        "addressLocality": "Pontchâteau",
+        "postalCode": "44160",
+        "addressCountry": "FR"
+      },
+      "telephone": "+33240292545",
+      "url": "{{ url('/') }}",
+      "description": "Centre équestre proposant leçons d'équitation, pensions, stages et compétitions à Pontchâteau."
+    }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
@@ -22,12 +58,17 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="{{ asset('img-style/logo.png') }}" alt="logo" class="logo-img">
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-                    <ul class="navbar-nav align-items-center gap-3">
-                        <li class="nav-item">
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header border-bottom">
+                        <h5 class="offcanvas-title font-heading" id="offcanvasNavbarLabel">Menu</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body justify-content-end">
+                        <ul class="navbar-nav align-items-center gap-3">
+                            <li class="nav-item">
                             <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="{{ url('/') }}">Accueil</a>
                         </li>
                         <li class="nav-item dropdown">
@@ -48,7 +89,7 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li><a class="dropdown-item" href="{{ route('planning') }}">Planning</a></li>
-                                <li><a class="dropdown-item" href="#">Stages</a></li>
+                                <li><a class="dropdown-item" href="{{ route('stages.index') }}">Stages</a></li>
                                 <li><a class="dropdown-item" href="{{ route('centre-de-loisirs') }}">Centres de Loisirs</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="{{ route('actualites') }}">Actualité</a></li>
@@ -65,7 +106,7 @@
                                 <li><a class="dropdown-item" href="{{ route('revue-de-presse') }}">Revue de presse</a></li>
                                 <li><a class="dropdown-item" href="{{ route('galeries.index') }}">Galeries</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Nous Contacter</a></li>
+                                <li><a class="dropdown-item" href="{{ route('nous-contacter') }}">Nous Contacter</a></li>
                             </ul>
                         </li>
                         
@@ -101,6 +142,7 @@
                             </ul>
                         </li>
                     </ul>
+                </div>
                 </div>
             </div>
         </nav>

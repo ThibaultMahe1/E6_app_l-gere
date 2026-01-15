@@ -2,13 +2,24 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Silber\Bouncer\Database\HasRolesAndAbilities;
 
-class User extends Authenticatable
+/**
+ * @property int $id
+ * @property string $name
+ * @property string $email
+ * @property string|null $phone
+ * @property \App\Models\Adherent|null $adherent
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Event> $events
+ * @property \Illuminate\Database\Eloquent\Relations\Pivot $pivot
+ */
+class User extends Authenticatable implements MustVerifyEmail
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, HasRolesAndAbilities;
@@ -51,6 +62,7 @@ class User extends Authenticatable
 
     /**
      * Get the adherent record associated with the user.
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne<Adherent, $this>
      */
     public function adherent()
     {
@@ -70,6 +82,9 @@ class User extends Authenticatable
         });
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<Event, $this>
+     */
     public function events()
     {
         return $this->belongsToMany(Event::class);

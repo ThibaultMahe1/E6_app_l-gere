@@ -95,7 +95,7 @@
         <div class="col-lg-8 text-center">
             <div class="bg-light p-4 rounded border">
                 <h4 class="mb-3" style="font-family: 'Cinzel', serif;">Intéressé par nos tarifs ?</h4>
-                <a href="#" class="btn btn-primary btn-lg px-5 rounded-pill">
+                <a href="{{ route('tarifs') }}" class="btn btn-primary btn-lg px-5 rounded-pill">
                     Consultez la rubrique "Tarifs" <i class="fas fa-arrow-right ms-2"></i>
                 </a>
             </div>

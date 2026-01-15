@@ -16,8 +16,9 @@ class EventFactory extends Factory
      */
     public function definition(): array
     {
-        $startDate = $this->faker->dateTimeBetween('now', '+1 year');
-        $endDate = (clone $startDate)->modify('+' . rand(1, 48) . ' hours');
+        // Generate events around now (last month to next 2 months) to ensure visibility in calendar
+        $startDate = $this->faker->dateTimeBetween('-1 month', '+2 months');
+        $endDate = (clone $startDate)->modify('+' . rand(1, 4) . ' hours');
 
         return [
             'name' => $this->faker->sentence(3),

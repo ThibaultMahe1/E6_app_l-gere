@@ -38,7 +38,25 @@ class DatabaseSeeder extends Seeder
             EventTypeSeeder::class,
             EventSeeder::class,
             HorseSeeder::class,
+            TarifSeeder::class,
+            GallerySeeder::class,
+            PressReviewSeeder::class,
+            StageSeeder::class,
         ]);
+
+        // Assign types to events
+        $coursType = \App\Models\EventType::where('name', 'cours')->first();
+        $concoursType = \App\Models\EventType::where('name', 'concours')->first();
+        
+        \App\Models\Event::all()->each(function ($event) use ($coursType, $concoursType) {
+            // Randomly assign a type, or none
+            if (rand(0, 10) > 2) {
+                $type = rand(0, 1) ? $coursType : $concoursType;
+                if ($type) {
+                    $event->eventTypes()->attach($type->id);
+                }
+            }
+        });
 
         // Assign 3 events to Admin
         $events = \App\Models\Event::inRandomOrder()->take(3)->get();

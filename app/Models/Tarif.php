@@ -5,19 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PressReview extends Model
+class Tarif extends Model
 {
-    /** @use HasFactory<\Database\Factories\PressReviewFactory> */
+    /** @use HasFactory<\Database\Factories\TarifFactory> */
     use HasFactory;
 
     protected $fillable = [
+        'category',
+        'section',
         'title',
         'description',
-        'date',
-        'link',
-    ];
-    
-    protected $casts = [
-        'date' => 'date',
+        'price',
+        'promo_text',
+        'frequency',
     ];
 }

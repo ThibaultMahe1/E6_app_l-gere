@@ -52,7 +52,7 @@
             <p>Le Centre Equestre de Pont Château vous accueille toute l'année pour la pratique de l'équitation dans les meilleures conditions.
             Pour les cavaliers de tous niveaux et tous âges, à partir de 3 ans, le Centre équestre de Pont Château vous propose, la découverte de l'équitation, la pratique régulière ou l'initiation à la compétition, à travers différentes activités et plusieurs formules d'abonnement.</p>
             <p>Grâce à ses installations, le Centre Equestre accueille vos chevaux et poneys en pension au boxe ou au pré, ainsi que des formules de travail à la carte.</p>
-            <a href="#" class="btn btn-primary mt-3">En savoir plus</a>
+            <a href="{{ route('equitation-harmonique') }}" class="btn btn-primary mt-3">En savoir plus</a>
         </div>
     </div>
     <div class="col-lg-6 mt-4 mt-lg-0">
@@ -69,7 +69,7 @@
             <div class="card-body text-center">
                 <h4 class="card-title text-primary-custom">Installations</h4>
                 <p class="card-text">Des carrières, manèges et écuries modernes pour une pratique optimale.</p>
-                <a href="#" class="btn btn-outline-primary btn-sm">Découvrir</a>
+                <a href="{{ route('amenagements') }}" class="btn btn-outline-primary btn-sm">Découvrir</a>
             </div>
         </div>
     </div>
@@ -79,17 +79,17 @@
             <div class="card-body text-center">
                 <h4 class="card-title text-primary-custom">Enseignement</h4>
                 <p class="card-text">Une équipe pédagogique qualifiée pour vous accompagner du débutant au confirmé.</p>
-                <a href="#" class="btn btn-outline-primary btn-sm">Nos cours</a>
+                <a href="{{ route('projet-pedagogique') }}" class="btn btn-outline-primary btn-sm">Nos cours</a>
             </div>
         </div>
     </div>
     <div class="col-md-4">
         <div class="card h-100 border-0 shadow-sm hover-card">
-            <img src="{{ asset('img/img2.jpg') }}" class="card-img-top" alt="Compétition" style="height: 200px; object-fit: cover;">
+            <img src="{{ asset('img/img2.jpg') }}" class="card-img-top" alt="Stages" style="height: 200px; object-fit: cover;">
             <div class="card-body text-center">
-                <h4 class="card-title text-primary-custom">Compétition</h4>
-                <p class="card-text">Sorties en concours club, amateur et pro. Coaching personnalisé.</p>
-                <a href="#" class="btn btn-outline-primary btn-sm">Résultats</a>
+                <h4 class="card-title text-primary-custom">Stages</h4>
+                <p class="card-text">Retrouvez tous nos stages prévus et le planning détaillé de chaque jour.</p>
+                <a href="{{ route('stages.index') }}" class="btn btn-outline-primary btn-sm">Voir les stages</a>
             </div>
         </div>
     </div>
