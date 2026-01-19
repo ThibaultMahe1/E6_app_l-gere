@@ -51,9 +51,14 @@
     </div>
 
     <!-- Gallery Navigation -->
-    <div class="row justify-content-center mb-5">
+    <div class="row justify-content-center mb-4">
         <div class="col-12 text-center">
-            <h3 class="h3 mb-4" style="font-family: 'Cinzel', serif;">Pour les découvrir, choisissez une galerie d'images</h3>
+            <h3 class="h3" style="font-family: 'Cinzel', serif;">Pour les découvrir, choisissez une galerie d'images</h3>
+        </div>
+    </div>
+
+    <div class="position-relative">
+        <div style="position: sticky; top: 80px; z-index: 1020; background-color: var(--bg-color); padding: 10px 0; margin-bottom: 20px;">
             <ul class="nav nav-pills justify-content-center" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active rounded-pill px-4" id="pills-chevaux-tab" data-bs-toggle="pill" data-bs-target="#pills-chevaux" type="button" role="tab" aria-controls="pills-chevaux" aria-selected="true">Les Chevaux</button>
@@ -63,7 +68,6 @@
                 </li>
             </ul>
         </div>
-    </div>
 
     <!-- Gallery Content -->
     <div class="tab-content" id="pills-tabContent">
@@ -132,6 +136,7 @@
                 @endforeach
             </div>
         </div>
+    </div>
     </div>
 </div>
 

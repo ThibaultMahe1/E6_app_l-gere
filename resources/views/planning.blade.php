@@ -83,14 +83,44 @@ Planning
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
+        var isMobile = window.innerWidth < 768; // Bootstrap md breakpoint
+
         var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth',
+            initialView: isMobile ? 'listWeek' : 'dayGridMonth',
             locale: 'fr',
             height: '80vh',
             headerToolbar: {
                 left: 'prev,next today',
                 center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+                right: isMobile ? 'listWeek,dayGridMonth' : 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+            },
+            views: {
+                listWeek: { buttonText: 'Liste' },
+                dayGridMonth: { buttonText: 'Mois' }
+            },
+            
+            events: @json($events),
+
+            windowResize: function(view) {
+                if (window.innerWidth < 768) {
+                    if (calendar.view.type !== 'listWeek') {
+                        calendar.changeView('listWeek');
+                        calendar.setOption('headerToolbar', {
+                            left: 'prev,next today',
+                            center: 'title',
+                            right: 'listWeek,dayGridMonth'
+                        });
+                    }
+                } else {
+                    if (calendar.view.type !== 'dayGridMonth') {
+                        calendar.changeView('dayGridMonth');
+                        calendar.setOption('headerToolbar', {
+                            left: 'prev,next today',
+                            center: 'title',
+                            right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+                        });
+                    }
+                }
             },
             buttonText: {
                 today: "Aujourd'hui",
@@ -99,10 +129,15 @@ Planning
                 day: 'Jour',
                 list: 'Liste'
             },
-            events: @json($events),
+            // Removed direct 'events: ...' property since we use the function above
             eventColor: '#bf9b6e', // Default event color
             eventTextColor: '#ffffff',
             eventClick: function(info) {
+                // Ignore placeholder clicks
+                if (info.event.extendedProps.isPlaceholder) {
+                    return;
+                }
+                
                 // Populate Offcanvas
                 document.getElementById('eventTitle').textContent = info.event.title;
                 document.getElementById('eventType').textContent = info.event.extendedProps.type || 'Aucun';
@@ -285,5 +320,21 @@ Planning
         color: inherit;
         text-decoration: none;
     }
+
+    /* Style for 'No Event' placeholders in List View */
+    .no-event-placeholder {
+        background-color: transparent !important;
+        border: none !important;
+    }
+    .no-event-placeholder .fc-list-event-dot {
+        display: none; /* Hide the colored dot */
+    }
+    .no-event-placeholder .fc-list-event-title,
+    .no-event-placeholder .fc-list-event-time {
+        color: #999 !important;
+        font-style: italic;
+    }
 </style>
 @endsection
+
+

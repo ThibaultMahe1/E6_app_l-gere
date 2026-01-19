@@ -24,11 +24,11 @@
                 <!-- 
                     Facebook Widget
                     HACK: Facebook limits width to 500px. 
-                    We use CSS transform scale to make it look bigger (approx 1.5x) 
-                    and adjust margins to compensate for the scaling.
+                    We use CSS transform scale to make it look bigger on desktop (1.5x)
+                    and smaller on mobile to fit the screen.
                 -->
                 <div class="d-flex justify-content-center overflow-hidden py-4">
-                    <div style="transform: scale(1.5); transform-origin: top center; margin-bottom: 250px;">
+                    <div class="fb-wrapper">
                         <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fcentreequestrepontchateau&tabs=timeline&width=500&height=1000&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true" 
                                 width="500" 
                                 height="1000" 
@@ -52,6 +52,13 @@
 </div>
 
 <style>
+    /* Base styles for wrapper */
+    .fb-wrapper {
+        width: 500px; /* Fixed width of the iframe content */
+        transform-origin: top center;
+        /* Scaling will be handled by JS for perfect fit */
+    }
+
     .fb-page-container {
         display: flex;
         justify-content: center;
@@ -60,4 +67,41 @@
         border-radius: 8px;
     }
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        function resizeFacebookWidget() {
+            var wrapper = document.querySelector('.fb-wrapper');
+            if (!wrapper) return;
+
+            var screenWidth = window.innerWidth || document.documentElement.clientWidth;
+            var scale = 1;
+            
+            // Logic for different screens
+            if (screenWidth < 768) {
+                // Mobile: Scale to fit width but with extra generous padding
+                // (Screen width - 140px padding) / 500px widget width
+                scale = (screenWidth - 140) / 500;
+            } else {
+                // Desktop/Tablet: Keep original size (no zoom)
+                scale = 1.0;
+            }
+
+            // Apply transform
+            wrapper.style.transform = 'scale(' + scale + ')';
+            
+            // Adjust margin bottom to close the gap created by scaling
+            // Original height is 1000px
+            var originalHeight = 1000;
+            var newHeight = originalHeight * scale;
+            var marginDifference = newHeight - originalHeight;
+            
+            wrapper.style.marginBottom = marginDifference + 'px';
+        }
+
+        // Run on load and resize
+        resizeFacebookWidget();
+        window.addEventListener('resize', resizeFacebookWidget);
+    });
+</script>
 @endsection
