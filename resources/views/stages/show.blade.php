@@ -106,6 +106,23 @@
                                 {{ $stage->start_date->diffInDays($stage->end_date) + 1 }} jours
                             </div>
                         </li>
+                        
+                        @if($stage->prices->isNotEmpty())
+                        <li class="mb-3 d-flex border-top pt-3">
+                            <i class="fas fa-euro-sign mt-1 me-3 text-primary-custom"></i>
+                            <div class="w-100">
+                                <strong>Tarifs :</strong><br>
+                                <ul class="list-unstyled mt-2 mb-0">
+                                    @foreach($stage->prices as $price)
+                                        <li class="d-flex justify-content-between align-items-center mb-1">
+                                            <span class="text-muted small">{{ $price->label }}</span>
+                                            <span class="fw-bold">{{ number_format($price->price, 2) }} €</span>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </li>
+                        @endif
                     </ul>
 
                     @auth

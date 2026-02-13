@@ -41,7 +41,15 @@ class Event extends Model
      */
     public function users()
     {
-        return $this->belongsToMany(User::class)->withPivot(['date', 'is_cancelled']);
+        return $this->belongsToMany(User::class)->withPivot(['date', 'is_cancelled', 'horse_id']);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<EventPrice, $this>
+     */
+    public function prices()
+    {
+        return $this->hasMany(EventPrice::class);
     }
 
     /**

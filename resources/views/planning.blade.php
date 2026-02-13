@@ -50,6 +50,14 @@ Planning
         </div>
 
         <div class="mt-auto pt-3" style="border-top: 1px solid #bf9b6e;">
+            
+            <div id="stageMessage" class="alert alert-info text-center" style="display: none;">
+                <strong>Inscription Stage</strong><br>
+                Merci de contacter le centre pour vous inscrire à ce stage.
+                <a href="{{ route('nous-contacter') }}" class="btn btn-sm btn-outline-primary mt-2">Nous contacter</a>
+            </div>
+
+            <div id="authContent">
             @auth
                 @php
                     $user = Auth::user();
@@ -73,6 +81,7 @@ Planning
             @else
                 <a href="{{ route('login') }}" class="btn w-100 text-white py-2" style="background-color: #bf9b6e; font-weight: bold;">Se connecter pour s'inscrire</a>
             @endauth
+            </div>
         </div>
     </div>
 </div>
@@ -138,6 +147,19 @@ Planning
                     return;
                 }
                 
+                // Toggle Stage Message vs Auth Content
+                var isStage = info.event.extendedProps.isStage;
+                var stageMessage = document.getElementById('stageMessage');
+                var authContent = document.getElementById('authContent');
+                
+                if (isStage) {
+                    if(stageMessage) stageMessage.style.display = 'block';
+                    if(authContent) authContent.style.display = 'none';
+                } else {
+                    if(stageMessage) stageMessage.style.display = 'none';
+                    if(authContent) authContent.style.display = 'block';
+                }
+                
                 // Populate Offcanvas
                 document.getElementById('eventTitle').textContent = info.event.title;
                 document.getElementById('eventType').textContent = info.event.extendedProps.type || 'Aucun';
@@ -177,7 +199,7 @@ Planning
                         var btnUnique = document.getElementById('btnSubscribeUnique');
                         var btnYear = document.getElementById('btnSubscribeYear');
                         var btnDefault = document.getElementById('btnSubscribeDefault');
-
+                        
                         if (hasFormule) {
                             // Check subscription status
                             var isSubscribedGlobally = info.event.extendedProps.subscribedGlobally;

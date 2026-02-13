@@ -14,7 +14,12 @@ class PlanningController extends Controller
     {
         $user = auth()->user();
         $events = Event::with('eventTypes')->get()->map(function (Event $event) use ($user) {
-            $isCours = $event->eventTypes->contains('name', 'cours');
+            $isCours = $event->eventTypes->contains(function ($type) {
+                return strtolower($type->name) === 'cours';
+            });
+            $isStage = $event->eventTypes->contains(function ($type) {
+                return strtolower($type->name) === 'stage';
+            });
             $typeNames = $event->eventTypes->pluck('name')->join(', ');
 
             // Determine subscription status
@@ -42,6 +47,7 @@ class PlanningController extends Controller
                 'title' => $event->name,
                 'description' => $event->description,
                 'type' => $typeNames,
+                'isStage' => $isStage,
                 'subscribedGlobally' => $subscribedGlobally,
                 'subscribedDates' => $subscribedDates,
                 'className' => 'fc-event-custom'
@@ -81,6 +87,14 @@ class PlanningController extends Controller
         $isCours = $event->eventTypes->contains(function ($type) {
             return strtolower($type->name) === 'cours';
         });
+
+        $isStage = $event->eventTypes->contains(function ($type) {
+            return strtolower($type->name) === 'stage';
+        });
+
+        if ($isStage) {
+            return back()->with('info', 'Les inscriptions aux stages se font uniquement auprès du centre. Veuillez nous contacter.');
+        }
 
         // Check for 48h notice for registration
         if ($subscriptionType !== 'year') {

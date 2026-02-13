@@ -31,6 +31,12 @@
                     Ils vivent en boxe durant l'hiver pour les protéger des intempéries et au pré pendant le printemps et l'été.
                 </p>
             </div>
+            
+            <div class="mt-4 text-center">
+                <a href="{{ route('hommage') }}" class="btn btn-outline-dark rounded-pill px-4">
+                    <i class="fas fa-heart me-2 text-danger"></i>En mémoire de nos disparus
+                </a>
+            </div>
         </div>
     </div>
 
@@ -81,9 +87,9 @@
                             @php
                                 $photoUrl = 'https://placehold.co/400x300?text=' . urlencode($cheval->name);
                                 if ($cheval->photo_path) {
-                                    if (Str::startsWith($cheval->photo_path, 'http')) {
+                                    if (\Illuminate\Support\Str::startsWith($cheval->photo_path, 'http')) {
                                         $photoUrl = $cheval->photo_path;
-                                    } elseif (Str::startsWith($cheval->photo_path, '/home/thibault/img-e6-stock')) {
+                                    } elseif (\Illuminate\Support\Str::startsWith($cheval->photo_path, '/home/thibault/img-e6-stock')) {
                                         $photoUrl = asset('img-stock/' . basename($cheval->photo_path));
                                     } else {
                                         $photoUrl = asset($cheval->photo_path);
@@ -114,9 +120,9 @@
                             @php
                                 $photoUrl = 'https://placehold.co/400x300?text=' . urlencode($poney->name);
                                 if ($poney->photo_path) {
-                                    if (Str::startsWith($poney->photo_path, 'http')) {
+                                    if (\Illuminate\Support\Str::startsWith($poney->photo_path, 'http')) {
                                         $photoUrl = $poney->photo_path;
-                                    } elseif (Str::startsWith($poney->photo_path, '/home/thibault/img-e6-stock')) {
+                                    } elseif (\Illuminate\Support\Str::startsWith($poney->photo_path, '/home/thibault/img-e6-stock')) {
                                         $photoUrl = asset('img-stock/' . basename($poney->photo_path));
                                     } else {
                                         $photoUrl = asset($poney->photo_path);

@@ -15,9 +15,11 @@ class Horse extends Model
         'birth_date',
         'photo_path',
         'type',
+        'is_deceased',
     ];
 
     protected $casts = [
         'birth_date' => 'date',
+        'is_deceased' => 'boolean',
     ];
 }

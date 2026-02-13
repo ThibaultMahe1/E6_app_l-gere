@@ -37,6 +37,13 @@ class StageSeeder extends Seeder
             ]
         ]);
         $stage1->eventTypes()->attach($stageType);
+        
+        // Add prices for stage 1
+        $stage1->prices()->createMany([
+            ['label' => 'Demi-journée', 'price' => 45.00],
+            ['label' => 'Journée', 'price' => 80.00],
+            ['label' => 'Stage complet', 'price' => 220.00],
+        ]);
 
         // Stage Initiation
         $stage2 = Event::create([
@@ -56,5 +63,12 @@ class StageSeeder extends Seeder
             ]
         ]);
         $stage2->eventTypes()->attach($stageType);
+
+        // Add prices for stage 2
+        $stage2->prices()->createMany([
+            ['label' => 'Matinée découverte', 'price' => 35.00],
+            ['label' => 'Journée complète', 'price' => 60.00],
+            ['label' => 'Stage complet', 'price' => 110.00],
+        ]);
     }
 }

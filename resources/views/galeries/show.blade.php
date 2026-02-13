@@ -22,7 +22,18 @@
     <div class="row g-3" id="gallery-grid">
         @forelse($photos as $photo)
             @php
-                $photoUrl = $photo->image_path ? asset('img-stock/' . $photo->image_path) : 'https://placehold.co/600x400';
+                $photoUrl = 'https://placehold.co/600x400';
+                if ($photo->image_path) {
+                    if (Str::startsWith($photo->image_path, 'http')) {
+                        $photoUrl = $photo->image_path;
+                    } elseif (Str::startsWith($photo->image_path, '/home/thibault/img-e6-stock')) {
+                         // Remove the base path to get the relative path
+                         $relativePath = Str::after($photo->image_path, '/home/thibault/img-e6-stock/');
+                         $photoUrl = asset('img-stock/' . $relativePath);
+                    } else {
+                        $photoUrl = asset('img-stock/galeries/' . $photo->image_path);
+                    }
+                }
             @endphp
             <div class="col-sm-6 col-md-4 col-lg-3">
                 <div class="gallery-item position-relative overflow-hidden rounded shadow-sm" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-image="{{ $photoUrl }}" data-bs-title="{{ $photo->title }}">

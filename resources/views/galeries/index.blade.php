@@ -37,7 +37,19 @@
                     <div class="card h-100 border-0 shadow-sm hover-card gallery-card">
                         <div class="card-img-wrapper position-relative" style="height: 250px; overflow: hidden;">
                             @php
-                                $imageUrl = $gallery->cover_image ? asset('img-stock/' . $gallery->cover_image) : 'https://placehold.co/600x400?text=Galerie';
+                                $imageUrl = 'https://placehold.co/600x400?text=Galerie';
+                                if ($gallery->cover_image) {
+                                    if (Str::startsWith($gallery->cover_image, 'http')) {
+                                        $imageUrl = $gallery->cover_image;
+                                    } elseif (Str::startsWith($gallery->cover_image, '/home/thibault/img-e6-stock')) {
+                                        // Remove the base path to get the relative path
+                                        $relativePath = Str::after($gallery->cover_image, '/home/thibault/img-e6-stock/');
+                                        $imageUrl = asset('img-stock/' . $relativePath);
+                                    } else {
+                                        // Fallback if it's just a filename or relative path
+                                        $imageUrl = asset('img-stock/galeries/' . $gallery->cover_image);
+                                    }
+                                }
                             @endphp
                             <img src="{{ $imageUrl }}" class="card-img-top h-100 w-100 object-fit-cover transition-transform" alt="{{ $gallery->title }}">
                             <div class="overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center opacity-0 transition-opacity" style="background-color: rgba(52, 6, 4, 0.4);">

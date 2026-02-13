@@ -39,10 +39,16 @@ Route::get('/pensions', function () {
 Route::get('/tarifs', [TarifController::class, 'index'])->name('tarifs');
 
 Route::get('/cavalerie', function () {
-    $chevaux = \App\Models\Horse::where('type', 'cheval')->get();
-    $poneys = \App\Models\Horse::where('type', 'poney')->get();
+    $chevaux = \App\Models\Horse::where('type', 'cheval')->where('is_deceased', false)->get();
+    $poneys = \App\Models\Horse::where('type', 'poney')->where('is_deceased', false)->get();
     return view('cavalerie', compact('chevaux', 'poneys'));
 })->name('cavalerie');
+
+Route::get('/hommage', function () {
+    $chevaux = \App\Models\Horse::where('type', 'cheval')->where('is_deceased', true)->get();
+    $poneys = \App\Models\Horse::where('type', 'poney')->where('is_deceased', true)->get();
+    return view('hommage', compact('chevaux', 'poneys'));
+})->name('hommage');
 
 Route::get('/actualites', [ActualiteController::class, 'index'])->name('actualites');
 
