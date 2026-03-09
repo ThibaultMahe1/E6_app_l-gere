@@ -17,21 +17,41 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // Admin User
-        $admin = User::factory()->create([
-            'name' => 'Admin',
-            'email' => 'admin@example.com',
-            'role' => 'admin',
-            'password' => bcrypt('password'),
-        ]);
+        $admin = User::firstOrCreate(
+            ['email' => 'admin@example.com'],
+            [
+                'name' => 'Admin',
+                'role' => 'admin',
+                'password' => bcrypt('password'),
+                'phone_number' => '0123456789',
+            ]
+        );
         
         Bouncer::assign('admin')->to($admin);
+        
+        // Enseignant User
+        $enseignant = User::firstOrCreate(
+            ['email' => 'enseignant@example.com'],
+            [
+                'name' => 'Enseignant',
+                'role' => 'enseignant',
+                'password' => bcrypt('password'),
+                'phone_number' => '0987654321',
+            ]
+        );
+        
+        Bouncer::assign('enseignant')->to($enseignant);
+        Bouncer::allow('enseignant')->to(['manage-events', 'view-planning']);
 
         // Regular User
-        User::factory()->create([
-            'name' => 'User',
-            'email' => 'user@example.com',
-            'password' => bcrypt('password'),
-        ]);
+        User::firstOrCreate(
+            ['email' => 'user@example.com'],
+            [
+                'name' => 'User',
+                'password' => bcrypt('password'),
+                'phone_number' => '0123456780',
+            ]
+        );
 
         // Call other seeders
         $this->call([

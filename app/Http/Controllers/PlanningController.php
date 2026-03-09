@@ -20,7 +20,22 @@ class PlanningController extends Controller
             $isStage = $event->eventTypes->contains(function ($type) {
                 return strtolower($type->name) === 'stage';
             });
+            $isConcours = $event->eventTypes->contains(function ($type) {
+                return strtolower($type->name) === 'concours';
+            });
             $typeNames = $event->eventTypes->pluck('name')->join(', ');
+
+            // Define colors based on type
+            $color = '#bf9b6e'; // Default (Cours)
+            $textColor = '#ffffff';
+
+            if ($isStage) {
+                $color = '#340604'; // Dark Red for Stages
+            } elseif ($isConcours) {
+                $color = '#2c3e50'; // Dark Blue/Grey for Concours
+            } elseif (stripos($typeNames, 'balade') !== false) {
+                 $color = '#198754'; // Green for Balade if it exists
+            }
 
             // Determine subscription status
             $subscribedGlobally = false;
@@ -50,7 +65,9 @@ class PlanningController extends Controller
                 'isStage' => $isStage,
                 'subscribedGlobally' => $subscribedGlobally,
                 'subscribedDates' => $subscribedDates,
-                'className' => 'fc-event-custom'
+                'className' => 'fc-event-custom',
+                'color' => $color,
+                'textColor' => $textColor,
             ];
 
             if ($isCours) {
@@ -200,6 +217,24 @@ class PlanningController extends Controller
                 return null; // Skip cancellation rows
             }
 
+            $isStage = $event->eventTypes->contains(function ($type) {
+                return strtolower($type->name) === 'stage';
+            });
+            $isConcours = $event->eventTypes->contains(function ($type) {
+                return strtolower($type->name) === 'concours';
+            });
+
+            $color = '#bf9b6e'; // Default (Cours)
+            $textColor = '#ffffff';
+
+            if ($isStage) {
+                $color = '#340604'; // Dark Red for Stages
+            } elseif ($isConcours) {
+                $color = '#34689cff'; // Dark Blue/Grey for Concours
+            } elseif (stripos($typeNames, 'balade') !== false) {
+                $color = '#198754';
+            }
+
             /** @var array<string, mixed> $data */
             $data = [
                 'id' => $event->id,
@@ -207,6 +242,8 @@ class PlanningController extends Controller
                 'description' => $event->description,
                 'type' => $typeNames,
                 'className' => 'fc-event-custom',
+                'color' => $color,
+                'textColor' => $textColor,
                 'pivotDate' => $pivotDate,
                 'isYearly' => ($pivotDate === null)
             ];
