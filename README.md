@@ -1,4 +1,4 @@
-<h1 align="center">🐴 Centre Équestre de Pontchâteau</h1>
+<h1 align="center">Centre Équestre de Pontchâteau</h1>
 
 <p align="center">
   <strong>Application web de gestion pour un centre équestre</strong><br>
@@ -16,7 +16,7 @@
 
 ---
 
-## 📋 Sommaire
+## Sommaire
 
 - [Présentation](#-présentation)
 - [Fonctionnalités](#-fonctionnalités)
@@ -30,7 +30,7 @@
 
 ---
 
-## 🎯 Présentation
+## Présentation
 
 Cette application web a été développée pour le **Centre Équestre de Pontchâteau** dans le cadre d'un **stage en entreprise**. Elle propose une vitrine complète du centre ainsi qu'un espace membre permettant la gestion des inscriptions aux cours, stages et événements.
 
@@ -38,9 +38,9 @@ Le site offre aux visiteurs une présentation détaillée des activités du cent
 
 ---
 
-## ✨ Fonctionnalités
+## Fonctionnalités
 
-### 🌐 Partie publique
+### Partie publique
 - **Pages vitrine** : présentation du centre, philosophie d'équitation harmonique, projet pédagogique, aménagements, centre de loisirs, pensions
 - **Cavalerie** : consultation des chevaux et poneys du centre avec fiches détaillées
 - **Hommage** : page mémorielle pour les chevaux décédés
@@ -52,14 +52,14 @@ Le site offre aux visiteurs une présentation détaillée des activités du cent
 - **Actualités** : fil d'actualités du centre
 - **Plan d'accès** et **formulaire de contact**
 
-### 🔐 Espace membre
+### Espace membre
 - **Inscription / Connexion** avec vérification par email
 - **Profil utilisateur** : modification et suppression de compte
 - **Planning personnel** : vue des cours auxquels l'utilisateur est inscrit
 - **Inscription aux événements** : abonnement aux cours, stages et compétitions avec sélection du cheval
 - **Règle des 48h** : impossibilité de s'inscrire moins de 48h avant le début d'un événement
 
-### 🛡️ Administration
+### Administration
 - **Gestion des rôles** : administrateur, enseignant, utilisateur (via Silber Bouncer)
 - **Gestion des événements** : création, modification et suppression de cours, stages, compétitions et balades
 - **Gestion de la cavalerie** : ajout et suivi des chevaux avec planning d'activités
@@ -69,7 +69,7 @@ Le site offre aux visiteurs une présentation détaillée des activités du cent
 
 ---
 
-## 🛠️ Stack technique
+## Stack technique
 
 ### Backend
 | Technologie | Version | Rôle |
@@ -101,7 +101,7 @@ Le site offre aux visiteurs une présentation détaillée des activités du cent
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 app/
@@ -156,14 +156,14 @@ tests/
 
 | Type d'événement | Couleur |
 |------------------|---------|
-| 🟤 Cours | `#bf9b6e` |
-| 🔴 Stages | `#340604` |
-| 🔵 Concours | `#2c3e50` |
-| 🟢 Balades | `#198754` |
+| Cours | `#bf9b6e` |
+| Stages | `#340604` |
+| Concours | `#2c3e50` |
+| Balades | `#198754` |
 
 ---
 
-## 📦 Prérequis
+## Prérequis
 
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) installé et fonctionnel
 - [Composer](https://getcomposer.org/) (pour l'installation initiale)
@@ -171,7 +171,7 @@ tests/
 
 ---
 
-## 🚀 Installation
+## Installation
 
 **1. Cloner le dépôt**
 ```bash
@@ -220,7 +220,7 @@ php artisan key:generate
 
 ---
 
-## 🗄️ Base de données
+## Base de données
 
 ### Services Docker
 
@@ -250,7 +250,7 @@ php artisan key:generate
 
 ---
 
-## 🧪 Tests
+## Tests
 
 ```bash
 # Lancer tous les tests
@@ -265,7 +265,7 @@ php artisan key:generate
 
 ---
 
-## 🎓 Contexte du stage
+## Contexte du stage
 
 Ce projet a été réalisé dans le cadre d'un **stage en entreprise**, avec pour objectif la conception et le développement d'une application web complète pour un centre équestre.
 
@@ -281,6 +281,6 @@ Ce projet a été réalisé dans le cadre d'un **stage en entreprise**, avec pou
 ---
 
 <p align="center">
-  Développé avec ❤️ lors d'un stage en entreprise<br>
+  Développé lors d'un stage en entreprise<br>
   <strong>Laravel 12</strong> · <strong>Tailwind CSS</strong> · <strong>Alpine.js</strong> · <strong>MariaDB</strong>
 </p>
