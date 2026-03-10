@@ -1,59 +1,286 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<h1 align="center">🐴 Centre Équestre de Pontchâteau</h1>
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <strong>Application web de gestion pour un centre équestre</strong><br>
+  <em>Projet réalisé dans le cadre d'un stage en entreprise</em>
 </p>
 
-## About Laravel
+<p align="center">
+  <img src="https://img.shields.io/badge/Laravel-12-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" alt="Laravel 12">
+  <img src="https://img.shields.io/badge/PHP-8.2+-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP 8.2+">
+  <img src="https://img.shields.io/badge/Tailwind_CSS-3.1-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS">
+  <img src="https://img.shields.io/badge/Alpine.js-3.4-8BC0D0?style=for-the-badge&logo=alpine.js&logoColor=white" alt="Alpine.js">
+  <img src="https://img.shields.io/badge/MariaDB-11-003545?style=for-the-badge&logo=mariadb&logoColor=white" alt="MariaDB 11">
+  <img src="https://img.shields.io/badge/Docker-Sail-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker">
+</p>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 📋 Sommaire
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- [Présentation](#-présentation)
+- [Fonctionnalités](#-fonctionnalités)
+- [Stack technique](#-stack-technique)
+- [Architecture](#-architecture)
+- [Prérequis](#-prérequis)
+- [Installation](#-installation)
+- [Base de données](#-base-de-données)
+- [Tests](#-tests)
+- [Contexte du stage](#-contexte-du-stage)
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## 🎯 Présentation
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Cette application web a été développée pour le **Centre Équestre de Pontchâteau** dans le cadre d'un **stage en entreprise**. Elle propose une vitrine complète du centre ainsi qu'un espace membre permettant la gestion des inscriptions aux cours, stages et événements.
 
-## Laravel Sponsors
+Le site offre aux visiteurs une présentation détaillée des activités du centre (équitation harmonique, projet pédagogique, centre de loisirs, pensions…) et aux cavaliers inscrits un accès à un planning interactif pour gérer leurs réservations.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## ✨ Fonctionnalités
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 🌐 Partie publique
+- **Pages vitrine** : présentation du centre, philosophie d'équitation harmonique, projet pédagogique, aménagements, centre de loisirs, pensions
+- **Cavalerie** : consultation des chevaux et poneys du centre avec fiches détaillées
+- **Hommage** : page mémorielle pour les chevaux décédés
+- **Tarifs** : grille tarifaire organisée par catégorie (cheval/poney) et section (enseignement, options, cartes, à la carte, propriétaire)
+- **Planning** : calendrier interactif des cours et événements (FullCalendar)
+- **Stages** : consultation et détail des stages proposés
+- **Galeries photos** : albums photos avec visionneuse
+- **Revue de presse** : articles et mentions presse du centre
+- **Actualités** : fil d'actualités du centre
+- **Plan d'accès** et **formulaire de contact**
 
-## Contributing
+### 🔐 Espace membre
+- **Inscription / Connexion** avec vérification par email
+- **Profil utilisateur** : modification et suppression de compte
+- **Planning personnel** : vue des cours auxquels l'utilisateur est inscrit
+- **Inscription aux événements** : abonnement aux cours, stages et compétitions avec sélection du cheval
+- **Règle des 48h** : impossibilité de s'inscrire moins de 48h avant le début d'un événement
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 🛡️ Administration
+- **Gestion des rôles** : administrateur, enseignant, utilisateur (via Silber Bouncer)
+- **Gestion des événements** : création, modification et suppression de cours, stages, compétitions et balades
+- **Gestion de la cavalerie** : ajout et suivi des chevaux avec planning d'activités
+- **Gestion des galeries** : création d'albums et upload de photos
+- **Gestion des tarifs** : mise à jour de la grille tarifaire
+- **Gestion des adhérents** : suivi des formules d'abonnement et crédits
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 🛠️ Stack technique
 
-## Security Vulnerabilities
+### Backend
+| Technologie | Version | Rôle |
+|-------------|---------|------|
+| **Laravel** | 12 | Framework PHP |
+| **PHP** | 8.2+ | Langage serveur |
+| **MariaDB** | 11 | Base de données relationnelle |
+| **Redis** | Alpine | Cache et sessions |
+| **Silber Bouncer** | 1.0 | Gestion des rôles et permissions |
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Frontend
+| Technologie | Version | Rôle |
+|-------------|---------|------|
+| **Tailwind CSS** | 3.1 | Framework CSS utilitaire |
+| **Alpine.js** | 3.4 | Réactivité côté client |
+| **Bootstrap** | 5.3 | Composants UI |
+| **FullCalendar** | 6.1 | Calendrier interactif |
+| **Vite** | 7.0 | Bundler et serveur de développement |
+| **Axios** | 1.11 | Client HTTP |
 
-## License
+### Outils de développement
+| Outil | Rôle |
+|-------|------|
+| **Laravel Sail** | Environnement Docker local |
+| **Pest** | Framework de tests |
+| **PHPStan / Larastan** | Analyse statique du code |
+| **Laravel Pint** | Formatage du code |
+| **Mailpit** | Test d'envoi d'emails |
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+## 🏗️ Architecture
+
+```
+app/
+├── Http/
+│   ├── Controllers/       # Contrôleurs de l'application
+│   ├── Middleware/         # Middlewares personnalisés
+│   └── Requests/          # Form Requests (validation)
+├── Models/                # Modèles Eloquent
+├── Providers/             # Service Providers
+└── View/                  # Composants Blade
+database/
+├── factories/             # Factories pour les tests
+├── migrations/            # Migrations de la BDD
+└── seeders/               # Données de démonstration
+resources/
+└── views/                 # Vues Blade
+routes/
+├── web.php                # Routes principales
+└── auth.php               # Routes d'authentification
+tests/
+├── Feature/               # Tests fonctionnels
+└── Unit/                  # Tests unitaires
+```
+
+### Schéma relationnel simplifié
+
+```
+┌──────────┐     ┌──────────────┐     ┌────────────┐
+│  users   │────▶│  adherents   │     │   horses   │
+│          │     └──────────────┘     │            │
+│          │                          └────────────┘
+│          │     ┌──────────────┐           │
+│          │◀───▶│  event_user  │     ┌─────┴──────┐
+└──────────┘     │  (pivot)     │     │  horse     │
+                 └──────┬───────┘     │  schedules │
+                        │             └────────────┘
+                 ┌──────┴───────┐
+                 │   events     │────▶ event_prices
+                 │              │────▶ event_types (pivot)
+                 └──────────────┘
+
+┌──────────┐     ┌────────────────┐
+│ galleries│────▶│ gallery_photos │
+└──────────┘     └────────────────┘
+
+┌──────────────┐     ┌──────────┐
+│ press_reviews│     │  tarifs  │
+└──────────────┘     └──────────┘
+```
+
+### Code couleur du planning
+
+| Type d'événement | Couleur |
+|------------------|---------|
+| 🟤 Cours | `#bf9b6e` |
+| 🔴 Stages | `#340604` |
+| 🔵 Concours | `#2c3e50` |
+| 🟢 Balades | `#198754` |
+
+---
+
+## 📦 Prérequis
+
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) installé et fonctionnel
+- [Composer](https://getcomposer.org/) (pour l'installation initiale)
+- [Node.js](https://nodejs.org/) >= 18 et npm
+
+---
+
+## 🚀 Installation
+
+**1. Cloner le dépôt**
+```bash
+git clone <url-du-depot>
+cd E6_app_l-gere
+```
+
+**2. Installer les dépendances PHP**
+```bash
+composer install
+```
+
+**3. Configurer l'environnement**
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+
+**4. Lancer les conteneurs Docker via Sail**
+```bash
+./vendor/bin/sail up -d
+```
+
+**5. Installer les dépendances frontend**
+```bash
+./vendor/bin/sail npm install
+```
+
+**6. Exécuter les migrations et seeders**
+```bash
+./vendor/bin/sail artisan migrate --seed
+```
+
+**7. Compiler les assets**
+```bash
+./vendor/bin/sail npm run dev
+```
+
+**8. Accéder à l'application**
+
+| Service | URL |
+|---------|-----|
+| Application | [http://localhost](http://localhost) |
+| Mailpit (emails) | [http://localhost:8025](http://localhost:8025) |
+| Vite (HMR) | [http://localhost:5173](http://localhost:5173) |
+
+---
+
+## 🗄️ Base de données
+
+### Services Docker
+
+| Service | Image | Port |
+|---------|-------|------|
+| **laravel.test** | PHP 8.4 (Sail) | `80`, `5173` |
+| **mariadb** | MariaDB 11 | `3306` |
+| **redis** | Redis Alpine | `6379` |
+| **mailpit** | Mailpit | `8025`, `1025` |
+
+### Principales tables
+
+| Table | Description |
+|-------|-------------|
+| `users` | Comptes utilisateurs avec rôles |
+| `adherents` | Adhérents avec formule d'abonnement |
+| `events` | Événements (cours, stages, concours, balades) |
+| `event_types` | Types d'événements |
+| `event_user` | Inscriptions aux événements (table pivot) |
+| `event_prices` | Tarification par événement |
+| `horses` | Chevaux et poneys du centre |
+| `horse_schedules` | Plannings d'activité des chevaux |
+| `tarifs` | Grille tarifaire du centre |
+| `galleries` | Albums photos |
+| `gallery_photos` | Photos des galeries |
+| `press_reviews` | Revue de presse |
+
+---
+
+## 🧪 Tests
+
+```bash
+# Lancer tous les tests
+./vendor/bin/sail artisan test
+
+# Lancer les tests avec Pest
+./vendor/bin/sail pest
+
+# Analyse statique avec PHPStan
+./vendor/bin/sail php ./vendor/bin/phpstan analyse
+```
+
+---
+
+## 🎓 Contexte du stage
+
+Ce projet a été réalisé dans le cadre d'un **stage en entreprise**, avec pour objectif la conception et le développement d'une application web complète pour un centre équestre.
+
+### Compétences mobilisées
+
+- **Conception** : analyse des besoins, modélisation de la base de données, architecture MVC
+- **Développement backend** : Laravel 12, Eloquent ORM, authentification, autorisation (RBAC)
+- **Développement frontend** : Tailwind CSS, Alpine.js, intégration FullCalendar
+- **DevOps** : conteneurisation Docker, configuration de l'environnement de développement
+- **Qualité** : tests automatisés (Pest), analyse statique (PHPStan), formatage de code (Pint)
+- **Gestion de projet** : versionnement Git, organisation du code, documentation
+
+---
+
+<p align="center">
+  Développé avec ❤️ lors d'un stage en entreprise<br>
+  <strong>Laravel 12</strong> · <strong>Tailwind CSS</strong> · <strong>Alpine.js</strong> · <strong>MariaDB</strong>
+</p>
