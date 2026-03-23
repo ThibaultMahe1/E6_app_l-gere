@@ -41,13 +41,8 @@
                                 if ($gallery->cover_image) {
                                     if (Str::startsWith($gallery->cover_image, 'http')) {
                                         $imageUrl = $gallery->cover_image;
-                                    } elseif (Str::startsWith($gallery->cover_image, '/home/thibault/img-e6-stock')) {
-                                        // Remove the base path to get the relative path
-                                        $relativePath = Str::after($gallery->cover_image, '/home/thibault/img-e6-stock/');
-                                        $imageUrl = asset('img-stock/' . $relativePath);
                                     } else {
-                                        // Fallback if it's just a filename or relative path
-                                        $imageUrl = asset('img-stock/galeries/' . $gallery->cover_image);
+                                        $imageUrl = route('ftp.image', ['path' => ltrim($gallery->cover_image, '/')]);
                                     }
                                 }
                             @endphp

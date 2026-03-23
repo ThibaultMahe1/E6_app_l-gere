@@ -51,10 +51,8 @@
                                         if ($cheval->photo_path) {
                                             if (\Illuminate\Support\Str::startsWith($cheval->photo_path, 'http')) {
                                                 $photoUrl = $cheval->photo_path;
-                                            } elseif (\Illuminate\Support\Str::startsWith($cheval->photo_path, '/home/thibault/img-e6-stock')) {
-                                                $photoUrl = asset('img-stock/' . basename($cheval->photo_path));
                                             } else {
-                                                $photoUrl = asset($cheval->photo_path);
+                                                $photoUrl = route('ftp.image', ['path' => ltrim($cheval->photo_path, '/')]);
                                             }
                                         }
                                     @endphp
@@ -99,10 +97,8 @@
                                         if ($poney->photo_path) {
                                             if (\Illuminate\Support\Str::startsWith($poney->photo_path, 'http')) {
                                                 $photoUrl = $poney->photo_path;
-                                            } elseif (\Illuminate\Support\Str::startsWith($poney->photo_path, '/home/thibault/img-e6-stock')) {
-                                                $photoUrl = asset('img-stock/' . basename($poney->photo_path));
                                             } else {
-                                                $photoUrl = asset($poney->photo_path);
+                                                $photoUrl = route('ftp.image', ['path' => ltrim($poney->photo_path, '/')]);
                                             }
                                         }
                                     @endphp

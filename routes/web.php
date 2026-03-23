@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TarifController;
 
 use App\Http\Controllers\StageController;
+use App\Http\Controllers\FtpImageController;
+
+Route::get('/ftp-image/{path}', [FtpImageController::class, 'show'])
+    ->where('path', '.*')
+    ->name('ftp.image');
 
 Route::get('/', function () {
     return view('acceuil');

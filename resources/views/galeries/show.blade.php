@@ -26,12 +26,8 @@
                 if ($photo->image_path) {
                     if (Str::startsWith($photo->image_path, 'http')) {
                         $photoUrl = $photo->image_path;
-                    } elseif (Str::startsWith($photo->image_path, '/home/thibault/img-e6-stock')) {
-                         // Remove the base path to get the relative path
-                         $relativePath = Str::after($photo->image_path, '/home/thibault/img-e6-stock/');
-                         $photoUrl = asset('img-stock/' . $relativePath);
                     } else {
-                        $photoUrl = asset('img-stock/galeries/' . $photo->image_path);
+                        $photoUrl = route('ftp.image', ['path' => ltrim($photo->image_path, '/')]);
                     }
                 }
             @endphp
