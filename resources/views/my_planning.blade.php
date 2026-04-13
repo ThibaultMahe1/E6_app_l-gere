@@ -9,7 +9,7 @@ Mon Planning
     <div class="col-12">
         <div class="card border-0 shadow-sm">
             <div class="card-body p-4">
-                <h3 class="mb-4 text-primary-custom border-bottom pb-2 d-inline-block">{{ __('Mon Planning') }}</h3>
+                <h3 class="mb-4 text-primary-custom border-bottom pb-2 d-inline-block">Mon Planning</h3>
                 
                 @if(session('success'))
                     <div class="alert alert-success">
@@ -29,38 +29,38 @@ Mon Planning
 </div>
 
 <!-- Event Offcanvas (Sidebar) -->
-<div class="offcanvas offcanvas-end" tabindex="-1" id="eventOffcanvas" aria-labelledby="eventOffcanvasLabel" style="background-color: #fdfbf7; border-left: 4px solid #bf9b6e;">
-    <div class="offcanvas-header" style="border-bottom: 1px solid #bf9b6e;">
-        <h5 class="offcanvas-title" id="eventOffcanvasLabel" style="font-family: 'Cinzel', serif; color: #340604;">Détails de l'événement</h5>
+<div class="offcanvas offcanvas-end offcanvas-custom" tabindex="-1" id="eventOffcanvas" aria-labelledby="eventOffcanvasLabel">
+    <div class="offcanvas-header border-bottom-primary">
+        <h5 class="offcanvas-title font-heading text-secondary-custom" id="eventOffcanvasLabel">Détails de l'événement</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body d-flex flex-column">
-        <h3 id="eventTitle" class="mb-4" style="color: #bf9b6e; font-family: 'Cinzel', serif;"></h3>
+        <h3 id="eventTitle" class="mb-4 event-title"></h3>
         
-        <div class="mb-4 p-3" style="background-color: rgba(191, 155, 110, 0.1); border-radius: 5px;">
-            <h6 style="color: #340604; font-weight: bold; text-transform: uppercase; font-size: 0.9rem;">Détails</h6>
+        <div class="mb-4 p-3 bg-primary-light">
+            <h6 class="section-label">Détails</h6>
             <p class="mb-1"><strong>Type :</strong> <span id="eventType"></span></p>
             <p class="mb-1"><strong>Début :</strong> <span id="eventStart"></span></p>
             <p class="mb-0"><strong>Fin :</strong> <span id="eventEnd"></span></p>
         </div>
 
         <div class="mb-4 flex-grow-1">
-            <h6 style="color: #340604; font-weight: bold; text-transform: uppercase; font-size: 0.9rem;">Description</h6>
-            <p id="eventDescription" class="text-muted" style="line-height: 1.6;"></p>
+            <h6 class="section-label">Description</h6>
+            <p id="eventDescription" class="text-muted lh-relaxed"></p>
         </div>
 
-        <div class="mt-auto pt-3" style="border-top: 1px solid #bf9b6e;">
+        <div class="mt-auto pt-3 border-top-primary">
             <form id="unsubscribeForm" method="POST" action="">
                 @csrf
                 @method('DELETE')
                 <input type="hidden" name="date" id="unsubscribeDate">
                 
                 <!-- Buttons for 'annee' subscription -->
-                <button type="submit" name="subscription_type" value="unique" id="btnUnsubscribeUnique" class="btn w-100 text-white py-2 mb-2" style="background-color: #dc3545; font-weight: bold; display: none;">Se désinscrire de cette séance</button>
-                <button type="submit" name="subscription_type" value="year" id="btnUnsubscribeYear" class="btn w-100 text-white py-2" style="background-color: #340604; font-weight: bold; display: none;">Se désinscrire de l'année</button>
+                <button type="submit" name="subscription_type" value="unique" id="btnUnsubscribeUnique" class="btn w-100 text-white py-2 mb-2 btn-danger-bold" style="display:none">Se désinscrire de cette séance</button>
+                <button type="submit" name="subscription_type" value="year" id="btnUnsubscribeYear" class="btn w-100 text-white py-2 btn-secondary-bold" style="display:none">Se désinscrire de l'année</button>
 
                 <!-- Default button -->
-                <button type="submit" name="subscription_type" value="unique" id="btnUnsubscribeDefault" class="btn w-100 text-white py-2" style="background-color: #dc3545; font-weight: bold;">Se désinscrire</button>
+                <button type="submit" name="subscription_type" value="unique" id="btnUnsubscribeDefault" class="btn w-100 text-white py-2 btn-danger-bold">Se désinscrire</button>
             </form>
         </div>
     </div>
@@ -195,43 +195,4 @@ Mon Planning
         calendar.render();
     });
 </script>
-
-<style>
-    /* Custom Calendar Styling to match theme */
-    :root {
-        --fc-border-color: #bf9b6e;
-        --fc-button-text-color: #fff;
-        --fc-button-bg-color: #bf9b6e;
-        --fc-button-border-color: #bf9b6e;
-        --fc-button-hover-bg-color: #a6855a;
-        --fc-button-hover-border-color: #a6855a;
-        --fc-button-active-bg-color: #340604;
-        --fc-button-active-border-color: #340604;
-        --fc-event-bg-color: #bf9b6e;
-        --fc-event-border-color: #bf9b6e;
-        --fc-today-bg-color: rgba(191, 155, 110, 0.15);
-    }
-
-    .fc-toolbar-title {
-        font-family: 'Cinzel', serif !important;
-        color: #340604;
-    }
-
-    .fc-col-header-cell-cushion {
-        color: #340604;
-        text-decoration: none;
-        font-family: 'Cinzel', serif;
-    }
-
-    .fc-daygrid-day-number {
-        color: #340604;
-        text-decoration: none;
-    }
-
-    /* Remove blue links */
-    a {
-        color: inherit;
-        text-decoration: none;
-    }
-</style>
 @endsection

@@ -7,9 +7,9 @@
     <!-- Header Section -->
     <div class="row justify-content-center mb-5">
         <div class="col-lg-10 text-center">
-            <h1 class="display-4 text-primary-custom mb-3" style="font-family: 'Cinzel', serif;">Les Aménagements</h1>
+            <h1 class="display-4 text-primary-custom mb-3 font-heading">Les Aménagements</h1>
             <div class="d-flex justify-content-center mb-4">
-                <div style="width: 100px; height: 3px; background-color: var(--primary-color);"></div>
+                <div class="divider-primary"></div>
             </div>
             <p class="lead text-muted">
                 Le Centre Equestre de Pont Château vous propose des installations adaptées à la pratique de l'équitation en toute sécurité.
@@ -23,8 +23,8 @@
             <img src="https://placehold.co/800x600?text=Vue+Aérienne+Centre" alt="Vue du centre" class="img-fluid rounded shadow-sm">
         </div>
         <div class="col-lg-6">
-            <h2 class="h2 text-secondary-custom mb-4" style="font-family: 'Cinzel', serif;">Visite du Centre Equestre</h2>
-            <p class="text-muted" style="font-size: 1.1rem; line-height: 1.8;">
+            <h2 class="h2 text-secondary-custom mb-4 font-heading">Visite du Centre Equestre</h2>
+            <p class="text-muted text-readable">
                 Bienvenue dans notre univers dédié au cheval. Nos infrastructures ont été pensées pour le bien-être des équidés et le confort des cavaliers. Que vous soyez débutant ou compétiteur, vous trouverez ici un cadre idéal pour évoluer et partager votre passion.
             </p>
         </div>
@@ -154,14 +154,4 @@
         </div>
     </div>
 </div>
-
-<style>
-    .hover-card {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .hover-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
-    }
-</style>
 @endsection

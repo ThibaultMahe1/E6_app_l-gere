@@ -7,9 +7,9 @@
     <!-- Header Section -->
     <div class="row justify-content-center mb-5">
         <div class="col-lg-10 text-center">
-            <h1 class="display-4 text-primary-custom mb-3" style="font-family: 'Cinzel', serif;">Notre Projet Pédagogique</h1>
+            <h1 class="display-4 text-primary-custom mb-3 font-heading">Notre Projet Pédagogique</h1>
             <div class="d-flex justify-content-center mb-4">
-                <div style="width: 100px; height: 3px; background-color: var(--primary-color);"></div>
+                <div class="divider-primary"></div>
             </div>
         </div>
     </div>
@@ -17,7 +17,7 @@
     <!-- Les Objectifs -->
     <div class="row mb-5">
         <div class="col-12 mb-4">
-            <h2 class="h2 text-secondary-custom mb-4" style="font-family: 'Cinzel', serif;">Les Objectifs</h2>
+            <h2 class="h2 text-secondary-custom mb-4 font-heading">Les Objectifs</h2>
         </div>
 
         <!-- Equidé Section -->
@@ -87,7 +87,7 @@
     <!-- Cavalier Loisirs - Les moyens mis en place -->
     <div class="row mb-5">
         <div class="col-12 mb-4">
-            <h2 class="h2 text-secondary-custom mb-4" style="font-family: 'Cinzel', serif;">Cavalier Loisirs : Les moyens mis en place</h2>
+            <h2 class="h2 text-secondary-custom mb-4 font-heading">Cavalier Loisirs : Les moyens mis en place</h2>
         </div>
 
         <div class="col-lg-12">

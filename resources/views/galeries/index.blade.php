@@ -4,11 +4,11 @@
 
 @section('content')
 <!-- Search Bar (Fixed) -->
-<div class="position-fixed" style="top: 100px; right: 30px; z-index: 1000;">
+<div class="position-fixed search-floating">
     <div class="d-flex align-items-center bg-white rounded-pill shadow-sm p-1">
-        <input type="text" id="searchInput" class="border-0 bg-transparent" placeholder="Rechercher..." style="width: 0; padding: 0; opacity: 0; transition: all 0.4s ease; outline: none;">
-        <button id="searchBtn" class="btn rounded-circle text-white d-flex align-items-center justify-content-center" style="width: 45px; height: 45px; background-color: var(--primary-color);">
-            <img src="{{ asset('img-style/chercher.svg') }}" alt="Rechercher" style="width: 20px; height: 20px;">
+        <input type="text" id="searchInput" class="border-0 bg-transparent search-input-hidden" placeholder="Rechercher...">
+        <button id="searchBtn" class="btn rounded-circle text-white d-flex align-items-center justify-content-center search-btn-circle">
+            <img src="{{ asset('img-style/chercher.svg') }}" alt="Rechercher" class="icon-sm">
         </button>
     </div>
 </div>
@@ -17,9 +17,9 @@
     <!-- Header -->
     <div class="row justify-content-center mb-5">
         <div class="col-lg-10 text-center">
-            <h1 class="display-4 text-primary-custom mb-3" style="font-family: 'Cinzel', serif;">Galeries Photos</h1>
+            <h1 class="display-4 text-primary-custom mb-3 font-heading">Galeries Photos</h1>
             <div class="d-flex justify-content-center mb-4">
-                <div style="width: 100px; height: 3px; background-color: var(--primary-color);"></div>
+                <div class="divider-primary"></div>
             </div>
             <p class="text-muted lead">Découvrez en images la vie du club, nos événements et nos pensionnaires.</p>
         </div>
@@ -27,7 +27,7 @@
 
     <!-- Galleries Grid -->
     <div class="row g-4 justify-content-center" id="galleriesContainer">
-        <div id="noResults" class="col-12 text-center py-5" style="display: none;">
+        <div id="noResults" class="col-12 text-center py-5 d-none">
             <p class="text-muted fs-5">Aucune galerie ne correspond à votre recherche.</p>
         </div>
 
@@ -35,7 +35,7 @@
             <div class="col-md-6 col-lg-4 gallery-item">
                 <a href="{{ route('galeries.show', $gallery) }}" class="text-decoration-none">
                     <div class="card h-100 border-0 shadow-sm hover-card gallery-card">
-                        <div class="card-img-wrapper position-relative" style="height: 250px; overflow: hidden;">
+                        <div class="card-img-wrapper position-relative card-img-fixed">
                             @php
                                 $imageUrl = 'https://placehold.co/600x400?text=Galerie';
                                 if ($gallery->cover_image) {
@@ -47,7 +47,7 @@
                                 }
                             @endphp
                             <img src="{{ $imageUrl }}" class="card-img-top h-100 w-100 object-fit-cover transition-transform" alt="{{ $gallery->title }}">
-                            <div class="overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center opacity-0 transition-opacity" style="background-color: rgba(52, 6, 4, 0.4);">
+                            <div class="overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center opacity-0 transition-opacity bg-overlay-dark">
                                 <i class="fas fa-images text-white fa-3x"></i>
                             </div>
                         </div>
@@ -129,23 +129,4 @@
         });
     });
 </script>
-
-<style>
-    .hover-card:hover {
-        transform: translateY(-5px);
-        transition: transform 0.3s ease;
-    }
-    .hover-card:hover .overlay {
-        opacity: 1 !important;
-    }
-    .hover-card:hover img {
-        transform: scale(1.05); 
-    }
-    .transition-transform {
-        transition: transform 0.5s ease;
-    }
-    .transition-opacity {
-        transition: opacity 0.3s ease;
-    }
-</style>
 @endsection

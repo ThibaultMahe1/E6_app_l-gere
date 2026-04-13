@@ -11,21 +11,21 @@
     </div>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="{{ asset('img/test-photo-carrouselle.jpg') }}" class="d-block w-100" style="height: 80vh; object-fit: cover;" alt="Centre Équestre">
+            <img src="{{ asset('img/test-photo-carrouselle.jpg') }}" class="d-block w-100 carousel-hero-img" alt="Centre Équestre">
             <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
                 <h2 class="display-4 text-white">Bienvenue au Centre Équestre</h2>
                 <p class="lead">Passion, Nature et Excellence à Pontchâteau</p>
             </div>
         </div>
         <div class="carousel-item">
-            <img src="{{ asset('img/test-photo-carrouselle.jpg') }}" class="d-block w-100" style="height: 80vh; object-fit: cover;" alt="Équitation">
+            <img src="{{ asset('img/test-photo-carrouselle.jpg') }}" class="d-block w-100 carousel-hero-img" alt="Équitation">
             <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
                 <h2 class="display-4 text-white">Des Installations de Qualité</h2>
                 <p class="lead">Pour le confort des cavaliers et des chevaux</p>
             </div>
         </div>
         <div class="carousel-item">
-            <img src="{{ asset('img/test-photo-carrouselle.jpg') }}" class="d-block w-100" style="height: 80vh; object-fit: cover;" alt="Compétition">
+            <img src="{{ asset('img/test-photo-carrouselle.jpg') }}" class="d-block w-100 carousel-hero-img" alt="Compétition">
             <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
                 <h2 class="display-4 text-white">Enseignement & Compétition</h2>
                 <p class="lead">Progressez à votre rythme avec nos moniteurs diplômés</p>
@@ -65,7 +65,7 @@
 <div class="row g-4 mb-5">
     <div class="col-md-4">
         <div class="card h-100 border-0 shadow-sm hover-card">
-            <img src="{{ asset('img/img2.jpg') }}" class="card-img-top" alt="Installations" style="height: 200px; object-fit: cover;">
+            <img src="{{ asset('img/img2.jpg') }}" class="card-img-top img-cover-200" alt="Installations">
             <div class="card-body text-center">
                 <h4 class="card-title text-primary-custom">Installations</h4>
                 <p class="card-text">Des carrières, manèges et écuries modernes pour une pratique optimale.</p>
@@ -75,7 +75,7 @@
     </div>
     <div class="col-md-4">
         <div class="card h-100 border-0 shadow-sm hover-card">
-            <img src="{{ asset('img/img1.jpg') }}" class="card-img-top" alt="Enseignement" style="height: 200px; object-fit: cover;">
+            <img src="{{ asset('img/img1.jpg') }}" class="card-img-top img-cover-200" alt="Enseignement">
             <div class="card-body text-center">
                 <h4 class="card-title text-primary-custom">Enseignement</h4>
                 <p class="card-text">Une équipe pédagogique qualifiée pour vous accompagner du débutant au confirmé.</p>
@@ -85,7 +85,7 @@
     </div>
     <div class="col-md-4">
         <div class="card h-100 border-0 shadow-sm hover-card">
-            <img src="{{ asset('img/img2.jpg') }}" class="card-img-top" alt="Stages" style="height: 200px; object-fit: cover;">
+            <img src="{{ asset('img/img2.jpg') }}" class="card-img-top img-cover-200" alt="Stages">
             <div class="card-body text-center">
                 <h4 class="card-title text-primary-custom">Stages</h4>
                 <p class="card-text">Retrouvez tous nos stages prévus et le planning détaillé de chaque jour.</p>

@@ -7,9 +7,9 @@
     <!-- Header Section -->
     <div class="row justify-content-center mb-5">
         <div class="col-lg-10 text-center">
-            <h1 class="display-4 text-primary-custom mb-3" style="font-family: 'Cinzel', serif;">Centres de Loisirs & Scolaires</h1>
+            <h1 class="display-4 text-primary-custom mb-3 font-heading">Centres de Loisirs & Scolaires</h1>
             <div class="d-flex justify-content-center mb-4">
-                <div style="width: 100px; height: 3px; background-color: var(--primary-color);"></div>
+                <div class="divider-primary"></div>
             </div>
             <p class="lead text-muted">
                 Accueil de groupes, centres aérés et projets scolaires au cœur de la nature.
@@ -24,7 +24,7 @@
             <!-- Introduction -->
             <div class="card border-0 shadow-sm mb-5">
                 <div class="card-body p-4 p-md-5">
-                    <h3 class="h4 mb-4 text-primary-custom" style="font-family: 'Cinzel', serif;">Une offre sur mesure pour les groupes</h3>
+                    <h3 class="h4 mb-4 text-primary-custom font-heading">Une offre sur mesure pour les groupes</h3>
                     <p class="mb-4">
                         Vous êtes à la recherche de nouvelles activités, de nouveaux lieux d'accueil pour les enfants que vous recevrez pendant les vacances scolaires, le mercredi tout au long de l'année ou dans le cadre d'un projet scolaire.
                     </p>
@@ -50,7 +50,7 @@
                             <div class="text-center mb-3">
                                 <i class="fas fa-horse-head fa-3x text-primary-custom"></i>
                             </div>
-                            <h4 class="text-center mb-3" style="font-family: 'Cinzel', serif;">Cavalerie & Équipements</h4>
+                            <h4 class="text-center mb-3 font-heading">Cavalerie & Équipements</h4>
                             <p>
                                 Le Centre Equestre de Pont-Château dispose d'une cavalerie adaptée (chevaux et poneys), et de tous les équipements nécessaires à la pratique d'une équitation ludique, ou d'une activité de découverte du monde du cheval.
                             </p>
@@ -66,7 +66,7 @@
                             <div class="text-center mb-3">
                                 <i class="fas fa-campground fa-3x text-primary-custom"></i>
                             </div>
-                            <h4 class="text-center mb-3" style="font-family: 'Cinzel', serif;">Accueil & Camping</h4>
+                            <h4 class="text-center mb-3 font-heading">Accueil & Camping</h4>
                             <p>
                                 Nous mettons également à votre disposition le terrain de camping pour les nuits en camps, ou pour les pique-niques, ainsi que les sanitaires pour les enfants et les animateurs.
                             </p>
@@ -79,8 +79,8 @@
             </div>
 
             <!-- Contact Section -->
-            <div class="bg-light p-4 p-md-5 rounded shadow-sm text-center mb-5" style="border-left: 5px solid var(--primary-color);">
-                <h3 class="h4 mb-4" style="font-family: 'Cinzel', serif; color: var(--secondary-color);">Nous contacter</h3>
+            <div class="bg-light p-4 p-md-5 rounded shadow-sm text-center mb-5 border-left-primary">
+                <h3 class="h4 mb-4 font-heading text-secondary-custom">Nous contacter</h3>
                 <p class="mb-4">
                     Nous nous tenons à votre disposition pour étudier toutes vos demandes, n'hésitez pas à nous contacter :
                 </p>
@@ -103,7 +103,7 @@
 
             <!-- Gallery Link -->
             <div class="text-center">
-                <a href="{{ route('galeries.index') }}" class="btn btn-lg text-white px-5 py-3" style="background-color: var(--primary-color); font-family: 'Cinzel', serif;">
+                <a href="{{ route('galeries.index') }}" class="btn btn-lg text-white px-5 py-3 bg-primary-custom font-heading">
                     <i class="fas fa-images me-2"></i> Un séjour au Centre Equestre ? Visitez la galerie
                 </a>
             </div>

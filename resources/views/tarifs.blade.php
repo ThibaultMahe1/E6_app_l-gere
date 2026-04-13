@@ -7,9 +7,9 @@
     <!-- Header -->
     <div class="row justify-content-center mb-5">
         <div class="col-lg-10 text-center">
-            <h1 class="display-4 text-primary-custom mb-3" style="font-family: 'Cinzel', serif;">Tarifs & Inscriptions</h1>
+            <h1 class="display-4 text-primary-custom mb-3 font-heading">Tarifs & Inscriptions</h1>
             <div class="d-flex justify-content-center mb-4">
-                <div style="width: 100px; height: 3px; background-color: var(--primary-color);"></div>
+                <div class="divider-primary"></div>
             </div>
             <h2 class="h4 text-muted">Saison 2024 - 2025</h2>
         </div>
@@ -21,7 +21,7 @@
         <div class="col-md-6">
             <div class="card h-100 shadow-sm border-0">
                 <div class="card-body p-4">
-                    <h3 class="h4 text-primary-custom mb-3" style="font-family: 'Cinzel', serif;">Inscriptions</h3>
+                    <h3 class="h4 text-primary-custom mb-3 font-heading">Inscriptions</h3>
                     <p class="text-muted">
                         Un certificat médical est conseillé pour la pratique d'une activité sportive (arrêté gouvernemental du 10 juin 1971, article 6).
                     </p>
@@ -45,22 +45,22 @@
         <div class="col-md-6">
             <div class="card h-100 shadow-sm border-0">
                 <div class="card-body p-4">
-                    <h3 class="h4 text-primary-custom mb-3" style="font-family: 'Cinzel', serif;">Licence FFE</h3>
+                    <h3 class="h4 text-primary-custom mb-3 font-heading">Licence FFE</h3>
                     <p class="text-muted small">
                         La licence sportive est délivrée par la Fédération Française d'Equitation. Elle est obligatoire et comprend une assurance.
                     </p>
                     <ul class="list-group list-group-flush mb-4">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Licence Junior (-18 ans)
-                            <span class="badge rounded-pill" style="background-color: var(--primary-color);">29 €</span>
+                            <span class="badge rounded-pill bg-primary-custom">29 €</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Licence Adulte (+18 ans)
-                            <span class="badge rounded-pill" style="background-color: var(--primary-color);">40 €</span>
+                            <span class="badge rounded-pill bg-primary-custom">40 €</span>
                         </li>
                     </ul>
 
-                    <h3 class="h4 text-primary-custom mb-3" style="font-family: 'Cinzel', serif;">Sécurité</h3>
+                    <h3 class="h4 text-primary-custom mb-3 font-heading">Sécurité</h3>
                     <p class="text-muted small mb-0">
                         <i class="fas fa-hard-hat text-primary-custom me-2"></i>Le port de la bombe est obligatoire.<br>
                         <i class="fas fa-shield-alt text-primary-custom me-2"></i>Protège-dos obligatoire pour le cross et l'obstacle (mineurs).
@@ -73,7 +73,7 @@
     <!-- Tabs Navigation -->
     <div class="row justify-content-center mb-5">
         <div class="col-12 text-center">
-            <h3 class="h3 mb-4" style="font-family: 'Cinzel', serif;">Consultez nos tarifs</h3>
+            <h3 class="h3 mb-4 font-heading">Consultez nos tarifs</h3>
             <ul class="nav nav-pills justify-content-center" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active rounded-pill px-4" id="pills-chevaux-tab" data-bs-toggle="pill" data-bs-target="#pills-chevaux" type="button" role="tab" aria-controls="pills-chevaux" aria-selected="true">Tarifs Chevaux</button>
@@ -92,13 +92,13 @@
         <div class="tab-pane fade show active" id="pills-chevaux" role="tabpanel" aria-labelledby="pills-chevaux-tab" tabindex="0">
             <div class="mb-5">
                 <div class="text-center mb-4">
-                    <h2 class="display-5 text-primary-custom" style="font-family: 'Cinzel', serif;">Tarifs Chevaux</h2>
+                    <h2 class="display-5 text-primary-custom font-heading">Tarifs Chevaux</h2>
                     <p class="text-muted">Saison 2025-2026 (Applicables à partir du 1er juin 2025)</p>
                 </div>
 
                 <div class="card shadow-sm border-0 overflow-hidden mb-4">
-                    <div class="card-header text-white text-center py-3" style="background-color: var(--primary-color);">
-                        <h3 class="h5 mb-0" style="font-family: 'Cinzel', serif;">Forfaits Enseignement</h3>
+                    <div class="card-header text-white text-center py-3 bg-primary-custom">
+                        <h3 class="h5 mb-0 font-heading">Forfaits Enseignement</h3>
                     </div>
                     <div class="table-responsive">
                         <table class="table table-hover mb-0 text-center align-middle">
@@ -112,7 +112,7 @@
                             <tbody>
                                 @foreach($groupedTarifs['cheval']['enseignement'] as $tarif)
                                     @if(str_contains(strtolower($tarif->title), 'annuel'))
-                                        <tr style="background-color: rgba(191, 155, 110, 0.1);">
+                                        <tr class="tr-highlight-primary">
                                             <td class="fw-bold text-primary-custom">{{ $tarif->title }}</td>
                                             <td>{{ $tarif->description }}</td>
                                             <td class="fw-bold text-primary-custom">
@@ -147,7 +147,7 @@
                     <div class="col-md-6">
                         <div class="card h-100 border-0 shadow-sm">
                             <div class="card-body">
-                                <h4 class="h5 text-primary-custom mb-3" style="font-family: 'Cinzel', serif;">Cartes & Découverte</h4>
+                                <h4 class="h5 text-primary-custom mb-3 font-heading">Cartes & Découverte</h4>
                                 <ul class="list-group list-group-flush">
                                     @foreach($groupedTarifs['cheval']['cartes'] as $tarif)
                                     <li class="list-group-item d-flex justify-content-between">
@@ -168,7 +168,7 @@
                     <div class="col-md-6">
                         <div class="card h-100 border-0 shadow-sm">
                             <div class="card-body">
-                                <h4 class="h5 text-primary-custom mb-3" style="font-family: 'Cinzel', serif;">À la carte</h4>
+                                <h4 class="h5 text-primary-custom mb-3 font-heading">À la carte</h4>
                                 <ul class="list-group list-group-flush">
                                     @foreach($groupedTarifs['cheval']['a_la_carte'] as $tarif)
                                     <li class="list-group-item d-flex justify-content-between">
@@ -190,7 +190,7 @@
                     <div class="col-12">
                         <div class="card border-0 shadow-sm bg-light">
                             <div class="card-body">
-                                <h4 class="h5 text-primary-custom mb-3" style="font-family: 'Cinzel', serif;">Propriétaires</h4>
+                                <h4 class="h5 text-primary-custom mb-3 font-heading">Propriétaires</h4>
                                 <div class="row text-center">
                                     @foreach($groupedTarifs['cheval']['proprietaire'] as $tarif)
                                     <div class="col-md-4 mb-3 mb-md-0">
@@ -211,7 +211,7 @@
                 </div>
                 
                 <div class="text-center mt-4">
-                    <a href="{{ asset('storage/tarifs_2025_2026.pdf') }}" target="_blank" class="btn text-white rounded-pill px-4" style="background-color: var(--primary-color);">
+                    <a href="{{ asset('storage/tarifs_2025_2026.pdf') }}" target="_blank" class="btn text-white rounded-pill px-4 bg-primary-custom">
                         <i class="fas fa-download me-2"></i>Télécharger les Tarifs Chevaux (PDF)
                     </a>
                 </div>
@@ -222,13 +222,13 @@
         <div class="tab-pane fade" id="pills-poneys" role="tabpanel" aria-labelledby="pills-poneys-tab" tabindex="0">
             <div class="mb-5">
                 <div class="text-center mb-4">
-                    <h2 class="display-5 text-primary-custom" style="font-family: 'Cinzel', serif;">Tarifs Poneys</h2>
+                    <h2 class="display-5 text-primary-custom font-heading">Tarifs Poneys</h2>
                     <p class="text-muted">Saison 2025-2026</p>
                 </div>
 
                 <div class="card shadow-sm border-0 overflow-hidden mb-4">
-                    <div class="card-header text-white text-center py-3" style="background-color: var(--primary-color);">
-                        <h3 class="h5 mb-0" style="font-family: 'Cinzel', serif;">Forfaits Enseignement</h3>
+                    <div class="card-header text-white text-center py-3 bg-primary-custom">
+                        <h3 class="h5 mb-0 font-heading">Forfaits Enseignement</h3>
                     </div>
                     <div class="table-responsive">
                         <table class="table table-hover mb-0 text-center align-middle">
@@ -242,7 +242,7 @@
                             <tbody>
                                 @foreach($groupedTarifs['poney']['enseignement'] as $tarif)
                                     @if(str_contains(strtolower($tarif->title), 'annuel'))
-                                        <tr style="background-color: rgba(52, 6, 4, 0.05);">
+                                        <tr class="tr-highlight-dark">
                                             <td class="fw-bold text-primary-custom">{{ $tarif->title }}</td>
                                             <td>{{ $tarif->description }}</td>
                                             <td class="fw-bold text-primary-custom">
@@ -277,7 +277,7 @@
                     <div class="col-md-6">
                         <div class="card h-100 border-0 shadow-sm">
                             <div class="card-body">
-                                <h4 class="h5 text-primary-custom mb-3" style="font-family: 'Cinzel', serif;">Cartes & Découverte</h4>
+                                <h4 class="h5 text-primary-custom mb-3 font-heading">Cartes & Découverte</h4>
                                 <ul class="list-group list-group-flush">
                                     @foreach($groupedTarifs['poney']['cartes'] as $tarif)
                                     <li class="list-group-item d-flex justify-content-between">
@@ -298,7 +298,7 @@
                     <div class="col-md-6">
                         <div class="card h-100 border-0 shadow-sm">
                             <div class="card-body">
-                                <h4 class="h5 text-primary-custom mb-3" style="font-family: 'Cinzel', serif;">À la carte</h4>
+                                <h4 class="h5 text-primary-custom mb-3 font-heading">À la carte</h4>
                                 <ul class="list-group list-group-flush">
                                     @foreach($groupedTarifs['poney']['a_la_carte'] as $tarif)
                                     <li class="list-group-item d-flex justify-content-between">
@@ -318,7 +318,7 @@
                 </div>
 
                 <div class="text-center mt-4">
-                    <a href="{{ asset('storage/tarifs_2025_2026poney.pdf') }}" target="_blank" class="btn text-white rounded-pill px-4" style="background-color: var(--primary-color);">
+                    <a href="{{ asset('storage/tarifs_2025_2026poney.pdf') }}" target="_blank" class="btn text-white rounded-pill px-4 bg-primary-custom">
                         <i class="fas fa-download me-2"></i>Télécharger les Tarifs Poneys (PDF)
                     </a>
                 </div>

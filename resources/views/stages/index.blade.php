@@ -6,9 +6,9 @@
 <div class="container py-5">
     <div class="row justify-content-center mb-5">
         <div class="col-lg-10 text-center">
-            <h1 class="display-4 text-primary-custom mb-3" style="font-family: 'Cinzel', serif;">Nos Stages</h1>
+            <h1 class="display-4 text-primary-custom mb-3 font-heading">Nos Stages</h1>
             <div class="d-flex justify-content-center mb-4">
-                <div style="width: 100px; height: 3px; background-color: var(--primary-color);"></div>
+                <div class="divider-primary"></div>
             </div>
             <p class="text-muted lead">Perfectionnez-vous lors de nos stages thématiques.</p>
         </div>
@@ -21,7 +21,7 @@
                     <div class="card-body p-4 d-flex flex-column">
                         <div class="mb-3">
                             <span class="badge bg-primary-custom rounded-pill mb-2">Stage</span>
-                            <h3 class="h4 card-title text-primary-custom mb-3" style="font-family: 'Cinzel', serif;">{{ $stage->name }}</h3>
+                            <h3 class="h4 card-title text-primary-custom mb-3 font-heading">{{ $stage->name }}</h3>
                         </div>
                         
                         <div class="mb-4 flex-grow-1">

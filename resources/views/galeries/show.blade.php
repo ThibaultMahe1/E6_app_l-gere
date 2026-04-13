@@ -12,10 +12,10 @@
             </a>
         </div>
         <div class="col text-center">
-            <h1 class="display-5 text-primary-custom mb-2" style="font-family: 'Cinzel', serif;">{{ $gallery->title }}</h1>
+            <h1 class="display-5 text-primary-custom mb-2 font-heading">{{ $gallery->title }}</h1>
             <p class="text-muted"><i class="far fa-calendar-alt me-2"></i>{{ $gallery->date->format('d/m/Y') }}</p>
         </div>
-        <div class="col-auto" style="width: 100px;"></div> <!-- Spacer for balance -->
+        <div class="col-auto spacer-100"></div> <!-- Spacer for balance -->
     </div>
 
     <!-- Photos Grid - Masonry-like -->
@@ -32,8 +32,8 @@
                 }
             @endphp
             <div class="col-sm-6 col-md-4 col-lg-3">
-                <div class="gallery-item position-relative overflow-hidden rounded shadow-sm" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-image="{{ $photoUrl }}" data-bs-title="{{ $photo->title }}">
-                    <img src="{{ $photoUrl }}" class="w-100 object-fit-cover d-block img-fluid" style="height: 250px; object-fit: cover;" alt="{{ $photo->title }}">
+                <div class="gallery-item position-relative overflow-hidden rounded shadow-sm cursor-pointer" data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-image="{{ $photoUrl }}" data-bs-title="{{ $photo->title }}">
+                    <img src="{{ $photoUrl }}" class="w-100 object-fit-cover d-block img-fluid img-cover-250" alt="{{ $photo->title }}">
                 </div>
             </div>
         @empty
@@ -50,7 +50,7 @@
         <div class="modal-content bg-transparent border-0 shadow-none">
             <div class="modal-body p-0 position-relative text-center">
                 <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3 z-3 bg-white opacity-75" data-bs-dismiss="modal" aria-label="Close"></button>
-                <img src="" id="modalImage" class="img-fluid rounded shadow-lg" style="max-height: 90vh;" alt="">
+                <img src="" id="modalImage" class="img-fluid rounded shadow-lg modal-img-full" alt="">
                 <h5 id="modalTitle" class="text-white mt-3 text-shadow"></h5>
             </div>
         </div>
@@ -74,16 +74,4 @@
         });
     });
 </script>
-
-<style>
-    .gallery-item img {
-        transition: transform 0.3s ease;
-    }
-    .gallery-item:hover img {
-        transform: scale(1.03);
-    }
-    .text-shadow {
-        text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-    }
-</style>
 @endsection

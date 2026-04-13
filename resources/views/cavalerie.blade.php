@@ -7,9 +7,9 @@
     <!-- Header Section -->
     <div class="row justify-content-center mb-5">
         <div class="col-lg-10 text-center">
-            <h1 class="display-4 text-primary-custom mb-3" style="font-family: 'Cinzel', serif;">La Cavalerie</h1>
+            <h1 class="display-4 text-primary-custom mb-3 font-heading">La Cavalerie</h1>
             <div class="d-flex justify-content-center mb-4">
-                <div style="width: 100px; height: 3px; background-color: var(--primary-color);"></div>
+                <div class="divider-primary"></div>
             </div>
             <p class="lead text-muted mb-4">
                 Une cavalerie adaptée à tous les niveaux et aux différentes activités proposées par le Centre Equestre.
@@ -59,12 +59,12 @@
     <!-- Gallery Navigation -->
     <div class="row justify-content-center mb-4">
         <div class="col-12 text-center">
-            <h3 class="h3" style="font-family: 'Cinzel', serif;">Pour les découvrir, choisissez une galerie d'images</h3>
+            <h3 class="h3 font-heading">Pour les découvrir, choisissez une galerie d'images</h3>
         </div>
     </div>
 
     <div class="position-relative">
-        <div style="position: sticky; top: 80px; z-index: 1020; background-color: var(--bg-color); padding: 10px 0; margin-bottom: 20px;">
+        <div class="sticky-tabs">
             <ul class="nav nav-pills justify-content-center" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active rounded-pill px-4" id="pills-chevaux-tab" data-bs-toggle="pill" data-bs-target="#pills-chevaux" type="button" role="tab" aria-controls="pills-chevaux" aria-selected="true">Les Chevaux</button>
@@ -83,7 +83,7 @@
                 @foreach($chevaux as $cheval)
                 <div class="col-md-6 col-lg-4 col-xl-3">
                     <div class="card h-100 border-0 shadow-sm hover-card">
-                        <div class="card-img-wrapper" style="height: 250px; overflow: hidden;">
+                        <div class="card-img-wrapper card-img-fixed">
                             @php
                                 $photoUrl = 'https://placehold.co/400x300?text=' . urlencode($cheval->name);
                                 if ($cheval->photo_path) {
@@ -114,7 +114,7 @@
                 @foreach($poneys as $poney)
                 <div class="col-md-6 col-lg-4 col-xl-3">
                     <div class="card h-100 border-0 shadow-sm hover-card">
-                        <div class="card-img-wrapper" style="height: 250px; overflow: hidden;">
+                        <div class="card-img-wrapper card-img-fixed">
                             @php
                                 $photoUrl = 'https://placehold.co/400x300?text=' . urlencode($poney->name);
                                 if ($poney->photo_path) {
@@ -141,23 +141,4 @@
     </div>
     </div>
 </div>
-
-<style>
-    .hover-card {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .hover-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
-    }
-    .nav-pills .nav-link {
-        color: var(--primary-color);
-        background-color: transparent;
-        border: 1px solid var(--primary-color);
-    }
-    .nav-pills .nav-link.active {
-        background-color: var(--primary-color);
-        color: white;
-    }
-</style>
 @endsection

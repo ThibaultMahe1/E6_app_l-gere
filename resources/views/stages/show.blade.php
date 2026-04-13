@@ -14,7 +14,7 @@
     <div class="row g-5">
         <!-- Main Content -->
         <div class="col-lg-8">
-            <h1 class="display-5 text-primary-custom mb-4" style="font-family: 'Cinzel', serif;">{{ $stage->name }}</h1>
+            <h1 class="display-5 text-primary-custom mb-4 font-heading">{{ $stage->name }}</h1>
             
             <div class="card border-0 shadow-sm mb-5">
                 <div class="card-body p-4">
@@ -25,7 +25,7 @@
 
             <!-- Daily Schedule -->
             @if($stage->daily_schedule)
-                <h3 class="h4 text-primary-custom mb-4" style="font-family: 'Cinzel', serif;">Programme du stage</h3>
+                <h3 class="h4 text-primary-custom mb-4 font-heading">Programme du stage</h3>
                 
                 <div class="accordion custom-accordion" id="stageScheduleAccordion">
                     @foreach($stage->daily_schedule as $day)
@@ -33,10 +33,10 @@
                             <h2 class="accordion-header" id="headingDay{{ $loop->index }}">
                                 <button class="accordion-button {{ !$loop->first ? 'collapsed' : '' }} bg-white text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDay{{ $loop->index }}" aria-expanded="{{ $loop->first ? 'true' : 'false' }}" aria-controls="collapseDay{{ $loop->index }}">
                                     <div class="d-flex align-items-center">
-                                        <div class="bg-primary-custom text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 32px; height: 32px; flex-shrink: 0;">
+                                        <div class="bg-primary-custom text-white rounded-circle d-flex align-items-center justify-content-center me-3 day-circle">
                                             <span class="fw-bold small">{{ $loop->iteration }}</span>
                                         </div>
-                                        <span class="fw-bold" style="font-family: 'Cinzel', serif;">{{ $day['date'] ?? 'Jour ' . $loop->iteration }}</span>
+                                        <span class="fw-bold font-heading">{{ $day['date'] ?? 'Jour ' . $loop->iteration }}</span>
                                     </div>
                                 </button>
                             </h2>
@@ -61,22 +61,7 @@
                         </div>
                     @endforeach
                 </div>
-
-                <style>
-                    .custom-accordion .accordion-button:not(.collapsed) {
-                        color: var(--primary-color) !important;
-                        background-color: rgba(191, 155, 110, 0.1);
-                        box-shadow: inset 0 -1px 0 rgba(0,0,0,.125);
-                    }
-                    .custom-accordion .accordion-button:focus {
-                        border-color: var(--primary-color);
-                        box-shadow: 0 0 0 0.25rem rgba(191, 155, 110, 0.25);
-                    }
-                    .custom-accordion .accordion-button::after {
-                        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23bf9b6e'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
-                    }
-                </style>
-            @else
+@else
                 <div class="alert alert-light border">
                     <i class="fas fa-info-circle me-2 text-primary-custom"></i>
                     Le programme détaillé sera communiqué prochainement.
@@ -86,7 +71,7 @@
 
         <!-- Sidebar -->
         <div class="col-lg-4">
-            <div class="card border-0 shadow-sm sticky-top" style="top: 100px;">
+            <div class="card border-0 shadow-sm sticky-top sticky-offset-100">
                 <div class="card-body p-4">
                     <h3 class="h5 mb-4 text-primary-custom border-bottom pb-2">Informations Pratiques</h3>
                     

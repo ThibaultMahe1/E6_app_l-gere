@@ -7,15 +7,15 @@
     <!-- Header Section -->
     <div class="row justify-content-center mb-5">
         <div class="col-lg-10 text-center">
-            <h1 class="display-4 text-primary-custom mb-3" style="font-family: 'Cinzel', serif;">Équitation Harmonique®</h1>
+            <h1 class="display-4 text-primary-custom mb-3 font-heading">Équitation Harmonique®</h1>
             <div class="d-flex justify-content-center mb-4">
-                <div style="width: 100px; height: 3px; background-color: var(--primary-color);"></div>
+                <div class="divider-primary"></div>
             </div>
             <p class="lead text-muted mb-4">
                 Une approche qui vise à instaurer un équilibre parfait entre le cavalier et son cheval, en mettant en avant la synergie, la fluidité et la compréhension mutuelle.
             </p>
             <a href="{{ asset('storage/concept equitation harmonique.pdf') }}" download class="btn btn-outline-primary rounded-pill px-4">
-                <img src="{{ asset('img-style/enveloppe.svg') }}" alt="PDF" style="width: 20px; filter: brightness(0) invert(1);" class="me-2">
+                <img src="{{ asset('img-style/enveloppe.svg') }}" alt="PDF" class="icon-white-sm me-2">
                 Télécharger au format PDF
             </a>
         </div>
@@ -25,7 +25,7 @@
     <div class="row justify-content-center mb-5">
         <div class="col-lg-10">
             <div class="bg-white p-4 p-lg-5 rounded shadow-sm border-start border-4 border-primary-custom">
-                <p class="mb-0" style="font-size: 1.1rem; line-height: 1.8;">
+                <p class="mb-0 text-readable">
                     Empruntant un chemin plus complet que les méthodes axées exclusivement sur la performance sportive brute, l'Équitation Harmonique® intègre à la fois la technique équestre et une connexion approfondie avec l'animal, favorisant ainsi une meilleure réactivité, une communication plus fine, et une performance optimisée.
                 </p>
             </div>
@@ -35,7 +35,7 @@
     <!-- The 7 Pillars -->
     <div class="row mb-5">
         <div class="col-12 text-center mb-5">
-            <h2 class="h1 mb-3" style="color: var(--secondary-color);">Nos "7 piliers de la sagesse" équestres</h2>
+            <h2 class="h1 mb-3 text-secondary-custom">Nos "7 piliers de la sagesse" équestres</h2>
         </div>
 
         <div class="col-lg-10 mx-auto">
@@ -123,7 +123,7 @@
         <div class="col-lg-10">
             <div class="card bg-dark text-white border-0 rounded-3 overflow-hidden">
                 <div class="card-body p-5 text-center">
-                    <h3 class="mb-4" style="font-family: 'Cinzel', serif; color: var(--primary-color);">La Voie vers l'Excellence</h3>
+                    <h3 class="mb-4 font-heading text-primary-custom">La Voie vers l'Excellence</h3>
                     <p class="lead mb-0">
                         L'Équitation Harmonique® n'est pas une méthode ésotérique ou déconnectée des réalités de la compétition. Elle est, au contraire, une approche globale qui permet d'accéder à un niveau de performance supérieur en alliant technique, sensibilité et complicité avec le cheval.
                     </p>

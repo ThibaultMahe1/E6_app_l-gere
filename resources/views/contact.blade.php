@@ -7,7 +7,7 @@
     <div class="col-lg-8">
         <div class="card border-0 shadow-sm">
             <div class="card-body p-5">
-                <h1 class="text-center mb-5 text-primary-custom" style="font-family: 'Cinzel', serif;">Nous contacter</h1>
+                <h1 class="text-center mb-5 text-primary-custom font-heading">Nous contacter</h1>
                 
                 <div class="contact-info fs-5">
                     <p class="mb-4">Pour nous contacter :</p>
