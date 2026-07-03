@@ -18,14 +18,15 @@ pdf_options:
   h2 { color: #340604; border-bottom: 2px solid #bf9b6e; padding-bottom: 5px; margin-top: 30px; font-size: 20px; }
   h3 { color: #5a3e2b; margin-top: 20px; font-size: 16px; }
   h4 { color: #6b4c3b; margin-top: 15px; font-size: 14px; }
-  table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 12px; }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 12px; page-break-inside: avoid; break-inside: avoid; }
+  img, svg, canvas { page-break-inside: avoid; break-inside: avoid; display: block; max-width: 100%; }
   th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: left; }
   th { background-color: #340604; color: white; }
   tr:nth-child(even) { background-color: #f9f6f0; }
   code { background-color: #f4f0e8; padding: 2px 5px; border-radius: 3px; font-size: 0.85em; }
-  pre { background-color: #2d2d2d; color: #f8f8f2; padding: 12px; border-radius: 5px; overflow-x: auto; font-size: 11px; line-height: 1.5; }
+  pre { background-color: #2d2d2d; color: #f8f8f2; padding: 12px; border-radius: 5px; overflow-x: auto; font-size: 11px; line-height: 1.5; page-break-inside: avoid; break-inside: avoid; }
   pre code { background-color: transparent; color: inherit; padding: 0; }
-  blockquote { border-left: 4px solid #bf9b6e; padding: 10px 15px; margin: 15px 0; background-color: #fcf9f2; font-style: normal; }
+  blockquote { border-left: 4px solid #bf9b6e; padding: 10px 15px; margin: 15px 0; background-color: #fcf9f2; font-style: normal; page-break-inside: avoid; break-inside: avoid; }
   .page-break { page-break-after: always; }
   ul li, ol li { margin-bottom: 4px; }
 </style>

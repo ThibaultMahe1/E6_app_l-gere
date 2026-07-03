@@ -17,7 +17,8 @@ pdf_options:
   h1 { color: #340604; border-bottom: 3px solid #bf9b6e; padding-bottom: 10px; font-size: 28px; }
   h2 { color: #340604; border-bottom: 2px solid #bf9b6e; padding-bottom: 5px; margin-top: 30px; font-size: 22px; }
   h3 { color: #5a3e2b; margin-top: 20px; font-size: 18px; }
-  table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 13px; }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 13px; page-break-inside: avoid; break-inside: avoid; }
+  img, svg, canvas { page-break-inside: avoid; break-inside: avoid; display: block; max-width: 100%; }
   th, td { border: 1px solid #ddd; padding: 6px 10px; text-align: left; }
   th { background-color: #340604; color: white; }
   tr:nth-child(even) { background-color: #f9f6f0; }
